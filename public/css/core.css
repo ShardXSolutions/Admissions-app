@@ -154,8 +154,7 @@ body {
 
 .vlogo{
 
-    max-width:30%;
+    max-width:50%;
     height:auto;
-    background:  rgba(255, 255, 255, 0.9)
-}
+    background:  rgba(255, 255, 255, 0.9);
 }

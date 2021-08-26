@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'RVTTI Alumni Portal') }}</title>
+    <title>{{ config('app.name', ' Admission_Portal') }}</title>
 
   <!-- Bootstrap core CSS -->
   <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -77,7 +77,7 @@
             @yield('content')
              <footer>
     <div class="container">
-      <p> &copy; <a href="http://www.rvti.ac.ke" target="_blank" >RVTTI</a> 2019. All Rights Reserved.</p>
+      <p> &copy; <a href="http://www.shardx.co.ke" target="_blank" >ShardX Systems</a> 2021. All Rights Reserved.</p>
      
     </div>
   </footer>
