@@ -46,7 +46,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Year of Graduation') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Year of Examination') }}</label>
 
                             <div class="col-md-6">
                             <input id="feyear" type="number"  class="form-control" min="2010" max="2021" name="feyear" value="{{ old('feyear') }}" required autocomplete="feyear" autofocus>
@@ -83,9 +83,9 @@
    <div class="container">
       <div class="row">
         <div class="col-md-8 mx-auto">
-          <h2 class="section-heading">Are your details wrongly captured</h2>
+          <h2 class="section-heading">Are your a new Applicant</h2>
           <p>Click the link below to correct it. </p>
-          <a href="{{ route('update')}}" class="btn bg-primary btn-outline btn-xl js-scroll-trigger">Click to Edit Details</a>
+          <a href="" class="btn bg-primary btn-outline btn-xl js-scroll-trigger">Click to Apply for Admission</a>
 </div>
 
       </div>

@@ -58,14 +58,12 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#register">Register as RVTTI Alumni</a>
+            <a class="nav-link js-scroll-trigger" href="#KUCCPS">KUCCPS Placed Students</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#edit">Edit Existing Records</a>
+            <a class="nav-link js-scroll-trigger" href="#newApplication">New Applicants</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#graduate">Generate Graduation Form</a>
-          </li>
+        
            <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="/login">Admin Panel</a>
           </li>

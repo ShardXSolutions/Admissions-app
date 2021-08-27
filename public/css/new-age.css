@@ -408,6 +408,11 @@ footer ul li a:hover, footer ul li a:focus, footer ul li a:active, footer ul li 
   background: linear-gradient(#66fd52, #05830f);
 }
 
+.bg-purple {
+  background: #ad02e0;
+  background: -webkit-gradient(linear, left top, left bottom, from(#8603ad), to(#a815ec));
+  background: linear-gradient(#8603ad, #a815ec);
+}
 
 .bg-tertiary{
   background: #aaaaff; 

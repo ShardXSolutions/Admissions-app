@@ -46,7 +46,7 @@
             <a class="nav-link js-scroll-trigger" href="{{ url('/') }}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="{{ url('http://admissions.co.ke/alumnis/create') }}">Register as RVTTI Alumni</a>
+            <a class="nav-link js-scroll-trigger" href="{{ url('http://admissions.co.ke/adm/create') }}">Register as RVTTI Alumni</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="{{ url('http://admissions.co.ke/update') }}">Edit Existing Records</a>
