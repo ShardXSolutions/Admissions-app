@@ -11,12 +11,11 @@ class Admission extends Model
 		'adm',
 		'fullname',
 		'Course',
-		'idnum',
 		'address',
 		'email',
 		'mobile',
 		'level',
-		'indexnum',
+		'indexno',
 		'feyear',
 		'form_generated',
 	];

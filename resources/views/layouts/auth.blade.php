@@ -46,13 +46,13 @@
             <a class="nav-link js-scroll-trigger" href="{{ url('/') }}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="{{ url('http://admissions.co.ke/adm/create') }}">Register as RVTTI Alumni</a>
+            <a class="nav-link js-scroll-trigger" href="{{ url('http://admissions.co.ke/#KUCCPS') }}">KUCCPS Placed Students</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="{{ url('http://admissions.co.ke/update') }}">Edit Existing Records</a>
+            <a class="nav-link js-scroll-trigger" href="{{ url('http://admissions.co.ke/newApplicant') }}">New Applicants</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="{{ url('http://admissions.co.ke/graduateform') }}">Generate Graduation Form</a>
+            <a class="nav-link js-scroll-trigger" href="{{ url('http://admissions.co.ke/#') }}">Admin Panel</a>
           </li>
         </ul>
       </div>
@@ -64,7 +64,7 @@
         
       
   </header>
- <section class="bg-primary">
+ <section class="bg-green">
     <div class="container">
       <div class="row h-100">
        

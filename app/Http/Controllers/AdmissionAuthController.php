@@ -1,34 +1,39 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Routing\Route;
- use Illuminate\Support\Facades\Auth;
- use App\Http\Controllers\Controller;
- use Illuminate\Http\Request;
- use Illuminate\Http\Response;
- use App\Models\Admission;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use App\Models\Admission;
 use Illuminate\Support\Facades\DB;
 
  class AdmissionAuthController extends Controller {
 
- /*	
- 	public function gradlogin(){
+ 
+ 	public function kuccpsAuth(){
  		return view ('admission.form-gen-login');
  	}
-*/
- 	public function dologingrad(Request $request){
- 		$indexno = $request->input('indexno');
- 		$feyear= $request->input('feyear');
-    // Check validation
- 		$checkLogin = DB::table('admission')->where(['indexno'=>$indexno,'feyear'=>$feyear])->get();
- 		if(count($checkLogin)  > 0){
 
- 			$admission = DB::table('admission')->where('indexno', $indexno)->first();
+ 	public function login(Request $request){
+		
+ 		$indexnum = $request->input('indexno');
+ 		$fyear= $request->input('feyear');
+    // Check validation 
+	
+ 		$checkLogin = DB::table('admissions')->where(['indexno'=>$indexnum,'feyear'=>$fyear])->get();
+ 		
+		//dd(count($checkLogin));
+		 if(count($checkLogin) > 0){
+
+ 			$admission = DB::table('admissions')->where('indexno', $indexnum)->first();
  			
 
- 			return view("admission.formgen",['admission'=>$admission]);
+ 			return view("admission.kuccps",['admission'=>$admission]);
  		}else{
- 			return redirect()->back()->with('message', ['Your Details does not match our records. Are you sure you were placed in our institution for this intake']); 
- 		}
- 	}
- 	
- }
+			//$msg="error encountered";
+			//return back()->with("message", $msg);
+			return back()->with('message', 'Details you entered does not match our records. Make sure the Index number and Year of Exam are as captured at KUCCPS portal'); 
+		}
+ 	 }
+	}	

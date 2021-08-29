@@ -32,24 +32,7 @@
 
 <body id="page-top">
       
- 
-      
-   @if(session()->has('message'))
-    <section class=" text-center" id="register">
-    <div class="container">
-      <div class="alert alert-success">
-    
-                 {{ session()->get('message') }}
-<br>
-           
-                  <a href="{{ url('http://application.co.ke/') }}" class="btn bg-dark btn-outline btn-xl js-scroll-trigger">OK</a>
-               
-       
-    </div>
-  </div>
-</section>
-  @else
-   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
      <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="{{ asset('img/vlogo.png')}}" class="vlogo"></a> <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
@@ -71,6 +54,26 @@
       </div>
     </div>
   </nav>
+      
+   @if(session()->has('message'))
+   <br>
+
+    <section class=" text-center" id="register">
+    <div class="container">
+      <div class="alert alert-danger">
+    
+                {{ session()->get('message') }} 
+              
+<br><br>
+           
+                  <a href="{{ url('http://applications.co.ke/') }}" class="btn bg-danger btn-outline btn-xl js-scroll-trigger">OK</a>
+               
+       
+    </div>
+  </div>
+</section>
+  @else
+  
 
             @yield('content')
              <footer>
@@ -79,6 +82,7 @@
      
     </div>
   </footer>
+            
   @endif
 
 

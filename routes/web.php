@@ -15,8 +15,14 @@ Route::get('/', function () {
     return view('index');
 });
 Auth::routes();
+Route::resource('admission','AdmissionController');
 Route::group(['middleware' => ['web']], function () {
-
+Route::post('kuccpslounge', ['as'=>'kuccpslounge','uses'=>'AdmissionAuthController@login']);
+//Route::post('createPDF',['as'=>'createPDF','uses'=>'AdmissionController@update']);
 Route::get('/home', 'HomeController@index' );
 Route::get('/search','HomeController@search');
 });
+/*Route::get('/pdf', function (s) {
+    return view  ('admission.pdf');
+ });s
+ */
