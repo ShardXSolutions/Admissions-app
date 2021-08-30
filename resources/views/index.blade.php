@@ -24,7 +24,7 @@
 
 
 
-  <section class="download bg-secondary text-center" id="KUCCPS">
+  <section class="Download bg-secondary text-center" id="KUCCPS">
   <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -53,7 +53,7 @@
 
                             <div class="col-md-6">
 
-                            <input id="indexno" type="number" min=100000000 max=99999999999 class="form-control @error('indexno') is-invalid @enderror" name="indexno" value="{{ old('indexno') }}" required autocomplete="indexno" autofocus>
+                            <input id="indexno" type="number" min=100000000 max=99999999999 class="form-control @error('indexno') is-invalid @enderror" name="indexno" value="{{ old('indexno') }}" required autocomplete="indexno" >
 
                             @error('indexno')
                             <span class="invalid-feedback" role="alert">
@@ -95,7 +95,7 @@
         </div>   <div class="header-content mx-auto">
 
         <br><br>
-<h1 class="mb-5" style="color:#ffffff;">If your have not been placed by KUCCPS. in our institution this feyear, please scroll down to apply directly to the college. </h1>
+<h1 class="mb-5" style="color:#ffffff;">If your have not been placed by KUCCPS in our institution this Year, please scroll down to apply directly to the college. </h1>
 <br><a href="#newApplication" class="btn bg-dark btn-outline btn-xl js-scroll-trigger">New Applicantion </a>
 
 
