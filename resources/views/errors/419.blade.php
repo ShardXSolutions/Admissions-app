@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>404</title>
+<title>419</title>
 
 <style id="" media="all">/* vietnamese */
 @font-face {
@@ -121,10 +121,10 @@
 <div id="notfound">
 <div class="notfound">
 <div class="notfound-404">
-<h3>Oops! Procedure not allowed</h3>
-<h1><span>4</span><span>0</span><span>4</span></h1>
+<h3>Oops! Form has Errors</h3>
+<h1><span>4</span><span>1</span><span>9</span></h1>
 </div>
-<h2>we are sorry, but the page you requested cannot be found, may not have existed</h2>
+<h2>we are sorry, but the form you just submitted has errors</h2>
 </div>
 </div>
 
