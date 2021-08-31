@@ -59,26 +59,9 @@
     </div>
   </nav>
   <header class="masthead">
-       
-            
-        
-      
   </header>
- <section class="bg-green">
-    <div class="container">
-      <div class="row h-100">
-       
-            @yield('content')
-     
-  </div>
-</div>
-</section>
-   
-
-
- 
-
-  <!-- Bootstrap core JavaScript -->
+    @yield('content')
+ <!-- Bootstrap core JavaScript -->
   <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
   <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 

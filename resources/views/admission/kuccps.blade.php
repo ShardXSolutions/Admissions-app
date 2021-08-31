@@ -4,7 +4,9 @@
     
 @endsection
 @section('content')
-
+<section class="bg-green">
+    <div class="container">
+      <div class="row h-100">
 <div class="container"> 
   <div class="row justify-content-center">
     <div class="col-md-8">
@@ -52,4 +54,7 @@ Full Name
     </div>
   </div>
 </div>
+</div>
+</div>
+</section>
 @endsection

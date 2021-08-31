@@ -113,7 +113,7 @@
             <br>
           <h2 class="section-heading">Are your a new Applicant</h2>
           <p>Click the link below to correct it. </p>
-          <a href="/newapplicant" class="btn bg-primary btn-outline btn-xl js-scroll-trigger">Click to Apply for Admission</a>
+          <a href="/new" class="btn bg-primary btn-outline btn-xl js-scroll-trigger">Click to Apply for Admission</a>
 </div>
 
       </div>

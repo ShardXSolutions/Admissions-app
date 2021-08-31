@@ -18,11 +18,12 @@ Auth::routes();
 Route::resource('admission','AdmissionController');
 Route::group(['middleware' => ['web']], function () {
 Route::post('kuccpslounge', ['as'=>'kuccpslounge','uses'=>'AdmissionAuthController@login']);
-//Route::post('createPDF',['as'=>'createPDF','uses'=>'AdmissionController@update']);
 Route::get('/home', 'HomeController@index' );
 Route::get('/search','HomeController@search');
+Route::post('newapplicant','AdmissionController@create');
 });
-/*Route::get('/pdf', function (s) {
-    return view  ('admission.pdf');
- });s
+Route::get('/new', function () {
+    return view  ('admission.newapplicant');
+ });
+ /* 
  */
