@@ -46,13 +46,13 @@
             <a class="nav-link js-scroll-trigger" href="{{ url('/') }}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="{{ url('http://admissions.co.ke/#KUCCPS') }}">KUCCPS Placed Students</a>
+            <a class="nav-link js-scroll-trigger" href="{{ url('http://applications.co.ke/') }}">KUCCPS Placed Students</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="{{ url('http://admissions.co.ke/newApplicant') }}">New Applicants</a>
+            <a class="nav-link js-scroll-trigger" href="{{ url('http://applications.co.ke/new') }}">New Applicants</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="{{ url('http://admissions.co.ke/#') }}">Admin Panel</a>
+            <a class="nav-link js-scroll-trigger" href="{{ url('http://applications.co.ke/admin') }}">Admin Panel</a>
           </li>
         </ul>
       </div>

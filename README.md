@@ -1,2 +1,2 @@
-# Alumni-app
-Alumni Portal app
+# Admission-app
+Online Admission Portal app

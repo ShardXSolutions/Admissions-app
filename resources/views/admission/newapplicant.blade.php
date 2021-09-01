@@ -23,10 +23,13 @@
       <form method="post" action="" >
         @method('PATCH')
         @csrf
-       Enter Name (As captured in KCSE Certificate)
-       <input type="text" class="form-control" name="fullname" value="" /> 
-       Enter Grade
-        <select id="A" class="form-control" onChange="changecat(this.value);" >
+        <label class="text-black text-left" for="fullname">Enter Full Names (as used in KCSE or KCPE previous exam)</label>
+        <input type="text" class="form-control" name="fullname" id="inputName" placeholder="e.g. Jane Doe" value="{{ old('fullname') }}">
+       
+       
+       <label class="text-black text-left" for="Grade">Choose Grade Attained / Exam SAT
+</label>
+        <select id="Grade" class="form-control" onChange="changecat(this.value);" >
         <option value="A1">A</option>
         <option value="A1">A-</option>
         <option value="A1">B+</option>
@@ -39,12 +42,29 @@
         <option value="A3">D</option>
         <option value="A3">D-</option>
         <option value="A3">E</option>
-        <option value="A3">KCPE</option>
+        <option value="A3">KCPE Certificate</option>
+        <option value="A2">Artisan / Trade Test Certificate</option>
+        <option value="A2">Craft Certificate</option>
+
         </select>
-        Available Courses
+        <label class="text-black text-left" for="feser">Enter Your KNEC  Index Number</label>
+        <input id="indexno" type="text" class="form-control" name="indexno" value="" placeholder="e.g. 518105006" />
+        <label class="text-black text-left" for="feyear" >Enter Year of the Exam</label>
+        <input id="feyear" type="number" min="2000" max="2020" class="form-control" name="feyear" value=" e.g. 2020" />
+
+        <label class="text-black text-left" for="inputEmail">Choose Course</label>
         <select id="course" class="form-control">
-        <option value="" disabled selected>Select</option>
+          <option value="" disabled selected>Select</option>
         </select>
+
+        <label class="text-black text-left" for="no">Current Mobile Phone Number</label>
+        <input type="text" class="form-control" name="mobile" id="inputphone" placeholder="e.g. 0734567890" value="{{ old('mobile') }}">
+        <label class="text-black text-left" for="inputEmail">Enter email Address</label>
+        <input type="email" class="form-control" name="email" id="inputName" placeholder="e.g. janedoe@yahoo.com " value="{{ old('email') }}">
+        <label class="text-black text-left" for="inputEmail">Enter Current Mailing Address</label>
+        <input type="text" class="form-control" name="address" id="address" placeholder="e.g. P.O. Box 123456789 -00200- Nairobi " value="{{ old('current_address') }}">
+        <br>
+        
            <Button type="submit" name="previous" class="btn btn-primary">Generate Admission Form</Button>
 
       </form>
