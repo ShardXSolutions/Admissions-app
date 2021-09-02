@@ -2,7 +2,7 @@
 use setasign\Fpdi\Fpdi;
 flush();
 /* 
-  
+    Old Code
     $pdf = new Fpdi();
     $pdf->SetCreator("Script by Shadrack Kimutai (0724226334)");
     $pdf->SetDisplayMode('real');
@@ -20,9 +20,7 @@ flush();
    
 */
 
-// Multiple Page PDF
-
-/* initiate FPDI */
+/* New Code */
 $pdf = new Fpdi();
     $pdf->SetCreator("Script by Shadrack Kimutai (0724226334)");
     $pdf->SetDisplayMode('real');

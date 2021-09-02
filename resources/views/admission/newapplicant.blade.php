@@ -16,19 +16,31 @@
         <div class="card-body">
 
 
-          
-<br />
-
-  
-      <form method="post" action="" >
-        @method('PATCH')
+        <br>
+      <form method="post" enctype="multipart/form-data" action="{{ route('admission.store') }}" >
+        @method('POST')
         @csrf
-        <label class="text-black text-left" for="fullname">Enter Full Names (as used in KCSE or KCPE previous exam)</label>
+
+        @if ($errors->any())
+        <div class="alert alert-danger">
+          <h3>Following required entries are missing in your form. correct to proceed</h3>
+            <ul style="list-style-type: square;">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        <br />
+        @else
+        <span style="color: #ff0000;"><strong>Fields marked (*) are mandatory</strong></span>
+        @endif
+        <br>
+        <label class="text-black text-left" for="fullname">Enter Full Names (as used in KCSE or KCPE previous exam)</label><span style="color: #ff0000;"><strong>*</strong></span>
         <input type="text" class="form-control" name="fullname" id="inputName" placeholder="e.g. Jane Doe" value="{{ old('fullname') }}">
        
        
        <label class="text-black text-left" for="Grade">Choose Grade Attained / Exam SAT
-</label>
+</label><span style="color: #ff0000;"><strong>*</strong></span>
         <select id="Grade" class="form-control" onChange="changecat(this.value);" >
         <option value="A1">A</option>
         <option value="A1">A-</option>
@@ -47,27 +59,35 @@
         <option value="A2">Craft Certificate</option>
 
         </select>
-        <label class="text-black text-left" for="feser">Enter Your KNEC  Index Number</label>
-        <input id="indexno" type="text" class="form-control" name="indexno" value="" placeholder="e.g. 518105006" />
-        <label class="text-black text-left" for="feyear" >Enter Year of the Exam</label>
-        <input id="feyear" type="number" min="2000" max="2020" class="form-control" name="feyear" value=" e.g. 2020" />
+        <label class="text-black text-left" for="feser">Enter Your KNEC  Index Number</label><span style="color: #ff0000;"><strong>*</strong></span>
+        <input id="indexno" type="number" class="form-control" name="indexno" value="{{ old('indexno') }}" placeholder="e.g. 518105006" />
+        <label class="text-black text-left" for="feyear" >Enter Year of the Exam</label><span style="color: #ff0000;"><strong>*</strong></span>
+        <input id="feyear" type="number" min="2000" max="2020" class="form-control" name="feyear" placeholder=" e.g. 2020" value="{{ old('feyear') }}" />
 
-        <label class="text-black text-left" for="inputEmail">Choose Course</label>
-        <select id="course" class="form-control">
-          <option value="" disabled selected>Select</option>
+        <label class="text-black text-left" for="course">Choose Course</label><span style="color: #ff0000;"><strong>*</strong></span>
+        <select id="course" name ="course" class="form-control">
+          <option value="{{ old('course')}}" disabled selected >Enter Grade First.</option>
         </select>
-
-        <label class="text-black text-left" for="no">Current Mobile Phone Number</label>
-        <input type="text" class="form-control" name="mobile" id="inputphone" placeholder="e.g. 0734567890" value="{{ old('mobile') }}">
-        <label class="text-black text-left" for="inputEmail">Enter email Address</label>
-        <input type="email" class="form-control" name="email" id="inputName" placeholder="e.g. janedoe@yahoo.com " value="{{ old('email') }}">
-        <label class="text-black text-left" for="inputEmail">Enter Current Mailing Address</label>
-        <input type="text" class="form-control" name="address" id="address" placeholder="e.g. P.O. Box 123456789 -00200- Nairobi " value="{{ old('current_address') }}">
-        <br>
         
-           <Button type="submit" name="previous" class="btn btn-primary">Generate Admission Form</Button>
+
+        <label class="text-black text-left" for="mobile">Current Mobile Phone Number</label><span style="color: #ff0000;"><strong>*</strong></span>
+        <input type="text" class="form-control" name="mobile" id="inputphone" placeholder="e.g. 0734567890" value="{{ old('mobile') }}">
+        <label class="text-black text-left" for="inputEmail">Enter email Address</label><span style="color: #ff0000;"><strong>*</strong></span>
+        <input type="email" class="form-control" name="email" id="inputName" placeholder="e.g. janedoe@yahoo.com " value="{{ old('email') }}">
+        <label class="text-black text-left" for="address">Enter Current Mailing Address</label><span style="color: #ff0000;"><strong>*</strong></span>
+        <input type="text" class="form-control" name="address" id="address" placeholder="e.g. P.O. Box 123456789 -00200- Nairobi " value="{{ old('address') }}">
+        <label class="text-black text-left" for="fileinput">Upload Transcript / Certificate (For examination and grade above)</label><span style="color: #ff0000;"><strong>*</strong></span>
+
+        <div class="form-group">
+                    <input type="file" class="form-control" name="certfile" id="certfile" aria-describedby="fileHelp" >
+                    <small id="fileHelp" class="form-text text-muted">Please upload a valid file Either Image or PDF. The Size of the should not be more than 400kb.</small>
+        </div>
+        <br>
+        <br>
+           <Button type="submit" name="submit" class="btn btn-primary">Generate Provisional Admission Form</Button>
 
       </form>
+
        </div>
       </div>
     </div>

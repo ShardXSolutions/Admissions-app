@@ -10,7 +10,7 @@ class Admission extends Model
 		'id',
 		'adm',
 		'fullname',
-		'Course',
+		'course',
 		'address',
 		'email',
 		'mobile',

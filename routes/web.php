@@ -19,8 +19,8 @@ Route::resource('admission','AdmissionController');
 Route::group(['middleware' => ['web']], function () {
 Route::post('kuccpslounge', ['as'=>'kuccpslounge','uses'=>'AdmissionAuthController@login']);
 Route::get('/home', 'HomeController@index' );
-Route::get('/search','HomeController@search');
-Route::post('newapplicant','AdmissionController@create');
+//Route::get('/search','HomeController@search');
+Route::post('apply',['as'=>'apply','uses'=>'AdmissionController@create']);
 });
 Route::get('/new', function () {
     return view  ('admission.newapplicant');
