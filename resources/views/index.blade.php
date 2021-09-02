@@ -13,9 +13,9 @@
 
             <h1 class="mb-5">Welcome to our Online Admission Portal. </h1>
             <br><br><br><br><br><br><br>
-            <a href="#newApplication" class="btn bg-dark btn-outline btn-xl js-scroll-trigger">New Applicants </a> 
-            <a href="#KUCCPS" class="btn bg-dark btn-outline btn-xl js-scroll-trigger">KUCCPS Placed Applicants </a>
-
+           <a href="#KUCCPS" class="btn bg-dark btn-outline btn-xl js-scroll-trigger">KUCCPS Placed Applicants </a>
+ <a href="#newApplication" class="btn bg-dark btn-outline btn-xl js-scroll-trigger">New Applicants </a> 
+            
           </div>
 </div>
 </div>

@@ -22,9 +22,6 @@
   <link href="{{ asset('https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900') }}" rel="stylesheet">
   <link href="{{ asset('https://fonts.googleapis.com/css?family=Muli') }}" rel="stylesheet">
 
-  <!-- Plugin CSS -->
-  <link rel="stylesheet" href="{{ asset('device-mockups/device-mockups.min.css') }}">
-
   <!-- Custom styles for this template -->
   <link href="{{ asset('css/new-age.min.css') }}" rel="stylesheet">
 

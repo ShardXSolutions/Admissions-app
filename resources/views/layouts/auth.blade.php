@@ -25,7 +25,6 @@
   <link href="{{ asset('https://fonts.googleapis.com/css?family=Muli') }}" rel="stylesheet">
 
   <!-- Plugin CSS -->
-  <link rel="stylesheet" href="{{ asset('device-mockups/device-mockups.min.css') }}">
 
   <!-- Custom styles for this template -->
   <link href="{{ asset('css/new-age.min.css') }}" rel="stylesheet">
