@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Mail;
 use App\Admission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -63,17 +64,20 @@ class AdmissionController extends Controller
     $adm='';
     switch ($nextID) {
         case $nextID< 10:
-            $adm="EDTTI/PROV/S/000".$nextID;
+            $adm=env('APP_OWNER')."/PROV/S/000".$nextID;
             break;
         case $nextID<100:
-            $adm="EDTTI/PROV/S/00".$nextID;
+            $adm=env('APP_OWNER')."/PROV/S/00".$nextID;
             break;
         case $nextID<1000:
-            $adm="EDTTI/PROV/S/0".$nextID;
+            $adm=env('APP_OWNER')."/PROV/S/0".$nextID;
             break;
         }
         $request->request->add(['adm' => $adm]);
-        $request->request->add(['level' => strtok($request->course,' ')]); 
+        $request->request->add(['level' => strtok($request->course,' ')]);
+        $request->request->add(['form_generated'=>1]);
+
+       
         
         $admission = Admission::where('indexno', '=', $request->input('indexno'))->first();
         if ($admission === null) {
@@ -85,9 +89,16 @@ class AdmissionController extends Controller
            $admission = Admission::where('indexno', '=', $request->input('indexno'))->first();
            
         }
-
-
-    
+            
+        // email bit
+        /*  $html="Dear User<br> We have registered you successfuly";
+                Mail::send(array(), array(), function ($message) use ($html) {
+                $message->to('admission@edtti.ac.ke')
+                ->subject('admission')
+                ->from('eregistry@edtti.ac.ke')
+                ->setBody($html, 'text/html');
+              });
+        */
        return view('admission.pdf',['admission'=>$admission])->with('message', 'Your application is successful');
         //
     }

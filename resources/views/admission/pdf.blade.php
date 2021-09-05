@@ -44,6 +44,7 @@ if($pageNo==1){
     //$pdf->Text(37,55, strtok(strtoupper($admission->fullname),' ').",");
     $pdf->Text(68,60,strtoupper(" - ".$admission->adm));
     $pdf->Text(26,80,strtoupper($admission->course));
+    $pdf->Image("data:image/png;base64, {{ base64_encode(QrCode::format('png')->size(100)->generate('Make me into an QrCode!')) }}",10,10,-300);
   }
 }
 

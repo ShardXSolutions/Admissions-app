@@ -95,7 +95,7 @@
         </div>   <div class="header-content mx-auto">
 
         <br><br>
-<h1 class="mb-5" style="color:#ffffff;">If your have not been placed by KUCCPS in our institution this Year, please scroll down to apply directly to the college. </h1>
+<h1 class="mb-5" style="color:#ffffff;">If you have not been placed by KUCCPS in our institution this Year, please scroll down to apply directly to the college. </h1>
 <br><a href="#newApplication" class="btn bg-dark btn-outline btn-xl js-scroll-trigger">New Applicantion </a>
 
 
