@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 @section('title')
- <title>Generate Graduation Form</title>
+ <title>KUCCPS Enrolled Candidates</title>
     
 @endsection
 @section('content')

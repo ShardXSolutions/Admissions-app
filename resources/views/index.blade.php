@@ -67,7 +67,7 @@
                         <label for="feyear" class="col-md-4 col-form-label text-md-right">{{ __('Exam Year') }}</label>
 
                         <div class="col-md-6">
-                            <input id="feyear" type="number" min="2000" max="2021" class="form-control @error('feyear') is-invalid @enderror" name="feyear" required autocomplete="current-password">
+                            <input id="feyear" type="number" min="2000" max="2022" class="form-control @error('feyear') is-invalid @enderror" name="feyear" required autocomplete="current-password">
 
                             @error('feyear')
                             <span class="invalid-feedback" role="alert">

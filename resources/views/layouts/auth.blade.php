@@ -50,9 +50,18 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="{{ url('http://applications.co.ke/new') }}">New Applicants</a>
           </li>
+          @if(Auth::check())
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="{{ url('http://applications.co.ke/admin') }}">Admin Panel</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" }} >Logout</a>
+          </li>
+          @else
+           <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="{{ url('http://applications.co.ke/login') }}">login</a>
+          </li>
+          @endif
         </ul>
       </div>
     </div>

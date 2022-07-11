@@ -5,6 +5,7 @@ use Mail;
 use App\Admission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Mail\Mailer;
 
 class AdmissionController extends Controller
 {
@@ -89,16 +90,14 @@ class AdmissionController extends Controller
            $admission = Admission::where('indexno', '=', $request->input('indexno'))->first();
            
         }
-            
-        // email bit
-        /*  $html="Dear User<br> We have registered you successfuly";
-                Mail::send(array(), array(), function ($message) use ($html) {
-                $message->to('admission@edtti.ac.ke')
-                ->subject('admission')
-                ->from('eregistry@edtti.ac.ke')
-                ->setBody($html, 'text/html');
-              });
-        */
+       // dd($request);
+       $mailingData=[
+        'name' => $request->fullname,
+        'address' => $request->email
+       ];
+        Mail::to('shadychiri@gmail.com')->send(new Mailer($mailingData));
+
+        
        return view('admission.pdf',['admission'=>$admission])->with('message', 'Your application is successful');
         //
     }
@@ -161,4 +160,6 @@ class AdmissionController extends Controller
     {
         //
     }
+
+ 
 }

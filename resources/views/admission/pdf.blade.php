@@ -26,7 +26,7 @@ $pdf = new Fpdi();
     $pdf->SetDisplayMode('real');
 
 /* set the source file */
-$pageCount = $pdf->setSourceFile("EndebessAdm.pdf");
+$pageCount = $pdf->setSourceFile("edtti_blank.pdf");
 
 for ($pageNo = 1; $pageNo <= $pageCount; $pageNo++) {
     $tplIdx = $pdf->importPage($pageNo);
@@ -40,10 +40,10 @@ for ($pageNo = 1; $pageNo <= $pageCount; $pageNo++) {
     $pdf->SetTextColor(0, 0, 0);
 if($pageNo==1){
     /* now write some text above the imported page */
-    $pdf->Text(35,53, strtoupper($admission->fullname));
+    $pdf->Text(37,65, strtoupper($admission->fullname));
     //$pdf->Text(37,55, strtok(strtoupper($admission->fullname),' ').",");
-    $pdf->Text(68,60,strtoupper(" - ".$admission->adm));
-    $pdf->Text(26,80,strtoupper($admission->course));
+    $pdf->Text(53,75,strtoupper(" - ".$admission->adm));
+    $pdf->Text(44,85,strtoupper($admission->course));
   }
 }
 

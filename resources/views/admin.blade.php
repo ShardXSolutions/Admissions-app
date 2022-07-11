@@ -5,11 +5,14 @@
 
 
 
+<section class="bg-foundry">
+    <div class="container">
+      <div class="row h-100">
 <div class="container">
-  <div class="row justify-content-center">
+   <div class="row justify-content-center">
     <div class="col-md-14">
       <div class="card">
-        <div class="card-header">{{ __('Registered Alumni') }}</div>
+        <div class="card-header">{{ __('Admitted Students') }}</div>
 
         <div class="card-body">
 
@@ -30,40 +33,42 @@
           </div>
 <br />
 
-     {{ $alumni->links() }}
+     {{ $admission->links() }}
           <table class="table table-bordered">
             <thead>
-              <th>Reg Number</th>
+              <th>Adm</th>
               <th>Full Name</th>
-              <th>ID/Passport</th>
               <th>Course</th>
-              <th>Department</th>
-              <th>Mobile</th>
               <th>EMail</th>
+              <th>Mobile</th>
+              <th>Form Generated</th>
+              <th>More</th>
             </thead>
             <tbody>
-              @foreach ($alumni as $alumn) 
+              @foreach ($admission as $admi) 
               <tr>
              
-                <td>{{ $alumn->adm }} </td>
-                <td>{{ $alumn->fullname }} </td>
-                <td>{{ $alumn->idnum }} </td>
-                <td>{{ $alumn->course }} </td>
-                <td>{{ $alumn->dept }} </td>
-                <th>{{ $alumn->mobile }}</th>
-                <td>{{ $alumn->email }}</td>
+                <td>{{ $admi->adm }} </td>
+                <td>{{ $admi->fullname }} </td>
+                <td>{{ $admi->course }} </td>
+                <td>{{ $admi->email }} </td>
+                <th>{{ $admi->mobile }}</th>
+                <td>{{ $admi->form_generated }}</td>
                 <td>
-                    <a href="{{route('alumnis.edit',$alumn->id)}}" data-hover="tooltip" data-placement="top" data-target="#modal-edit-customers{{ $alumn->id }}" data-toggle="modal" id="modal-edit"  class="btn btn-primary">Edit</a>
+                    <a href="" data-hover="tooltip" data-placement="top" data-target="#modal-edit-customers{{ $admi->id }}" data-toggle="modal" id="modal-edit"  class="btn btn-primary">Edit</a>
                 </td>
               </tr>
               @endforeach
             </tbody>
           </table>
-          {{ $alumni->links() }}
+          {{ $admission->links() }}
         </div>
       </div>
     </div>
   </div>
 </div>
+</div>
+</div>
+</section>
     <!-- End Multi step form -->   
     @endsection

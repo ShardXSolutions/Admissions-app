@@ -24,24 +24,23 @@ class HomeController extends Controller
      */
     public function index()
     {
-       $alumni = DB::table('alumnis')->orderBy('Adm', 'asc')->paginate(100);
+       $admission = DB::table('admissions')->orderBy('adm', 'asc')->paginate(100);
 
-        return view('home',['alumni' => $alumni]);
+        return view('admin',['admission' => $admission]);
     
     }
 
     public function search(Request $request){
         $search=$request->get('search');
-        $alumni=DB::table('alumnis')    -> where('Adm','like','%'.$search. '%' )
-                                        ->orWhere('IDNum', 'like','%'.$search. '%' )
+        $admission=DB::table('admissions')  -> where('adm','like','%'.$search. '%' )
                                         ->orWhere('fullname','like','%' .$search.'%')
-                                        ->orWhere('mobile','like','%'.$search.'%')
                                         ->orWhere('course','like','%'.$search.'%')
-                                        ->orWhere('dept','like','%'.$search.'%')
                                         ->orWhere('email','like','%'.$search.'%')
+                                        ->orWhere('mobile','like','%'.$search.'%')
+                                        ->orWhere('form_generated','%'.$search.'%')
                                         ->orderBy('adm', 'asc')
-                                        ->paginate(50); 
+                                        ->paginate(3); 
 
-            return view('home',['alumni' => $alumni]);
+            return view('admin',['admission' => $admission]);
     }
 }

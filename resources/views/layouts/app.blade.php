@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', ' Admission_Portal') }}</title>
+    <title>{{ config('app.name', ' Admission Portal') }}</title>
 
   <!-- Bootstrap core CSS -->
   <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -44,9 +44,18 @@
             <a class="nav-link js-scroll-trigger" href="#newApplication">New Applicants</a>
           </li>
         
-           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/login">Admin Panel</a>
+            @if(Auth::check())
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="{{ url('/admin') }}">Admin Panel</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" }} >Logout</a>
+          </li>
+          @else
+           <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="{{ url('/login') }}">login</a>
+          </li>
+          @endif
         </ul>
       </div>
     </div>
@@ -63,7 +72,7 @@
               
 <br><br>
            
-                  <a href="{{ url('http://applications.co.ke/') }}" class="btn bg-danger btn-outline btn-xl js-scroll-trigger">OK</a>
+                  <a href="{{ url('http://admission.edtti.ac.ke/') }}" class="btn bg-danger btn-outline btn-xl js-scroll-trigger">OK</a>
                
        
     </div>

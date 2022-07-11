@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 @section('title')
- <title>Generate Graduation Form</title>
+ <title>New Candidates</title>
     
 @endsection
 @section('content')
@@ -56,13 +56,13 @@
         <option value="A3">E</option>
         <option value="A3">KCPE Certificate</option>
         <option value="A2">Artisan / Trade Test Certificate</option>
-        <option value="A2">Craft Certificate</option>
+        <option value="A1">Craft Certificate</option>
 
         </select>
         <label class="text-black text-left" for="feser">Enter Your KNEC  Index Number</label><span style="color: #ff0000;"><strong>*</strong></span>
         <input id="indexno" type="number" class="form-control" name="indexno" value="{{ old('indexno') }}" placeholder="e.g. 518105006" />
         <label class="text-black text-left" for="feyear" >Enter Year of the Exam</label><span style="color: #ff0000;"><strong>*</strong></span>
-        <input id="feyear" type="number" min="2000" max="2020" class="form-control" name="feyear" placeholder=" e.g. 2020" value="{{ old('feyear') }}" />
+        <input id="feyear" type="number" min="2000" max="2022" class="form-control" name="feyear" placeholder=" e.g. 2020" value="{{ old('feyear') }}" />
 
         <label class="text-black text-left" for="course">Choose Course</label><span style="color: #ff0000;"><strong>*</strong></span>
         <select id="course" name ="course" class="form-control">
