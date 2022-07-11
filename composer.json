@@ -10,7 +10,7 @@
     "require": {
         "php": "^7.1.3",
         "fideloper/proxy": "^4.0",
-        "laravel/framework": "7.6.0",
+        "laravel/framework": "7.30.6",
         "setasign/fpdf": "^1.8",
         "setasign/fpdi": "2.2.0",
         "phpunit/phpunit": "^8.5",
