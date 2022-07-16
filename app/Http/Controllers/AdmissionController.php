@@ -95,7 +95,7 @@ class AdmissionController extends Controller
         'name' => $request->fullname,
         'address' => $request->email
        ];
-        Mail::to('shadychiri@gmail.com')->send(new Mailer($mailingData));
+       // Mail::to('shadychiri@gmail.com')->send(new Mailer($mailingData));
 
         
        return view('admission.pdf',['admission'=>$admission])->with('message', 'Your application is successful');

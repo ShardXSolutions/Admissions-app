@@ -39,7 +39,7 @@ class HomeController extends Controller
                                         ->orWhere('mobile','like','%'.$search.'%')
                                         ->orWhere('form_generated','%'.$search.'%')
                                         ->orderBy('adm', 'asc')
-                                        ->paginate(3); 
+                                        ->paginate(20); 
 
             return view('admin',['admission' => $admission]);
     }

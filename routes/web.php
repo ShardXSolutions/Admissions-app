@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('index');
 });
 //Auth::routes(['register' => false]);
+//Auth::Logout();
 Auth::routes();
 Route::resource('admission','AdmissionController');
 Route::group(['middleware' => ['web']], function () {
