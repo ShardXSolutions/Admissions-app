@@ -56,11 +56,7 @@ class KuccpsPlacedStudents implements ToModel, WithStartRow, WithCustomCsvSettin
             'level'=>strtok($row[13]," "),
             'indexno'=>substr($row[1],11),
             'feyear'=>substr($row[1],-4),
-        ])
-        return new User([
-           'name'     => $row[0],
-           'email'    => $row[1],
-           'password' => \Hash::make($row[2]),
         ]);
+    
     }
 }

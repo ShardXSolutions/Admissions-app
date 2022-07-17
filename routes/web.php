@@ -1,5 +1,7 @@
 <?php
-
+use Illuminate\Support\Facades\Route;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\KuccpsPlacedStudents;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,5 +32,15 @@ Route::post('apply',['as'=>'apply','uses'=>'AdmissionController@create']);
 Route::get('/new', function () {
     return view  ('admission.newapplicant');
  });
- /* 
- */
+ 
+ Route::get('/import', function () {
+    
+   return view('import',[
+        'admission' => App\Models\Admission::all()
+   ]);
+ });
+
+Route::post('import', function () {
+    Excel::import(new KuccpsPlacedStudents, request()->file('file'));
+    return redirect()->back()->with('success','Data Imported Successfully');
+});
