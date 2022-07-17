@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-       $admission = DB::table('admissions')->orderBy('adm', 'asc')->paginate(100);
+       $admission = DB::table('admissions')->orderBy('adm', 'asc')->paginate(20);
 
         return view('admin',['admission' => $admission]);
     

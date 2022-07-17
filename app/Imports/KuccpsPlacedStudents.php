@@ -46,16 +46,16 @@ class KuccpsPlacedStudents implements ToModel, WithStartRow, WithCustomCsvSettin
     public function model(array $row)
     {
         return new Admission([
-            'id',
-            'adm',
-            'fullname',
-            'course',
-            'address',
-            'email',
-            'mobile',
-            'level',
-            'indexno',
-            'feyear'=substr("Hello world",-4),
+           
+            'adm'=getAdm(),
+            'fullname'==>row[2],
+            'course'=>row[13],
+            'address'=>row[8]." ".row[9]." ".row[10],
+            'email'=>$row[6],
+            'mobile'=>$row[4],
+            'level'=>strtok($row[13]," "),
+            'indexno'=>substr($row[1],11),
+            'feyear'=>substr($row[1],-4),
         ])
         return new User([
            'name'     => $row[0],

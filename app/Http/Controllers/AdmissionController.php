@@ -38,7 +38,7 @@ class AdmissionController extends Controller
      */
     public function store(Request $request)
     {
-        $lastID=Admission::query()->orderByDesc('id')->first();
+        
       $course = $request->course;
        // dd($course);
         $request->validate([
@@ -60,19 +60,21 @@ class AdmissionController extends Controller
         'email.required'=>'Your email is required for correspondence',
         'certfile.required'=>'You must upload the pdf or picture of the certificate or transcript'
         ]);
-        
+        $lastID=Admission::query()->orderByDesc('id')->first();
       $nextID = ($lastID->id)+1;  
     $adm='';
     switch ($nextID) {
         case $nextID< 10:
-            $adm=env('APP_OWNER')."/PROV/S/000".$nextID;
+            $adm=env('APP_OWNER').env('APP_WALKIN_PREFIX')."000".$nextID;
             break;
         case $nextID<100:
-            $adm=env('APP_OWNER')."/PROV/S/00".$nextID;
+            $adm=env('APP_OWNER').env('APP_WALKIN_PREFIX')."00".$nextID;
             break;
         case $nextID<1000:
-            $adm=env('APP_OWNER')."/PROV/S/0".$nextID;
+            $adm=env('APP_OWNER').env('APP_WALKIN_PREFIX')."0".$nextID;
             break;
+        case $nextID<10000:
+            $adm=env('APP_OWNER').env('APP_WALKIN_PREFIX').$nextID;
         }
         $request->request->add(['adm' => $adm]);
         $request->request->add(['level' => strtok($request->course,' ')]);

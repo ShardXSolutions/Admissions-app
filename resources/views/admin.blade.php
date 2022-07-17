@@ -10,7 +10,6 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -33,7 +32,7 @@
                                             <form action="/search" method="get">
                                         @csrf
                                             <label>Search:
-                                                <input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label>
+                                                <input type="text" class="form-control" placeholder="Search this " name="search"></label>
                                                
                                                 <button class="btn btn-secondary" type="submit"><i class="fa fa-search"></i></button>
                                         </form>
@@ -43,11 +42,8 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <table class="table table-bordered dataTable" id="dataTable" role="grid" aria-describedby="dataTable_info" style="width: 100%;" width="100%" cellspacing="0">
-                                    
-                                
-                                
-                                        <table class="table table-bordered">
+                                        <table class="table table-bordered dataTable" id="dataTable" role="grid" aria-describedby="dataTable_info" style="font-size: 0.750rem;width: 100%;" width="100%" cellspacing="0">
+                                   
             <thead>
               <th>Adm</th>
               <th>Full Name</th>
@@ -57,11 +53,8 @@
               <th>Form Generated</th>
               <th>More</th>
             </thead>
-                                    <tfoot>
-                                        <tr><th rowspan="1" colspan="1">Name</th><th rowspan="1" colspan="1">Position</th><th rowspan="1" colspan="1">Office</th><th rowspan="1" colspan="1">Age</th><th rowspan="1" colspan="1">Start date</th><th rowspan="1" colspan="1">Salary</th></tr>
-                                    </tfoot>
-                                    <tbody>
-                                    @foreach ($admission as $admi) 
+            <tbody>
+            @foreach ($admission as $admi) 
               <tr>
              
                 <td>{{ $admi->adm }} </td>
@@ -81,7 +74,7 @@
                                 </div></div>
                                 <div class="col-sm-12 col-md-7">
                                     <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
-                                    {{ $admission->links() }}
+                                    {{ $admission->onEachSide(3)->links() }}
                                     </div></div></div></div>
                             </div>
                         </div>

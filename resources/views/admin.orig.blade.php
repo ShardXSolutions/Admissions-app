@@ -26,9 +26,6 @@
                   <button class="btn btn-secondary" type="submit"><i class="fa fa-search"></i></button>
                 </div>
               </div>
-            </form> 
-
-
 
           </div>
 <br />
@@ -60,6 +57,15 @@
               </tr>
               @endforeach
             </tbody>
+            <tfoot>
+              <th>Adm</th>
+              <th>Full Name</th>
+              <th>Course</th>
+              <th>EMail</th>
+              <th>Mobile</th>
+              <th>Form Generated</th>
+              <th>More</th>
+</tfoot>
           </table>
           {{ $admission->links() }}
         </div>
