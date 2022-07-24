@@ -36,12 +36,21 @@
         @endif
         <br>
         <label class="text-black text-left" for="fullname">Enter Full Names (as used in KCSE or KCPE previous exam)</label><span style="color: #ff0000;"><strong>*</strong></span>
-        <input type="text" class="form-control" name="fullname" id="inputName" placeholder="e.g. Jane Doe" value="{{ old('fullname') }}">
+        <input type="text" class="form-control" name="StudentName" id="inputName" placeholder="e.g. Jane Doe" value="{{ old('StudentName') }}">
        
+        <label class="text-black text-left" for="gender">Choose Gender</label>
+        <span style="color: #ff0000;"><strong>*</strong></span>
+        <select id="Gender" name ="Gender" class="form-control" >
+          <option>Select Gender</option>
+          <option value="FEMALE">FEMALE</option>
+          <option value="MALE">MALE</option>
+
+        </select>
        
-       <label class="text-black text-left" for="Grade">Choose Grade Attained / Exam SAT
-</label><span style="color: #ff0000;"><strong>*</strong></span>
+       <label class="text-black text-left" for="Grade">Choose Grade Attained / Exam Sat</label>
+        <span style="color: #ff0000;"><strong>*</strong></span>
         <select id="Grade" class="form-control" onChange="changecat(this.value);" >
+          <option>Select Grade</option>
         <option value="A1">A</option>
         <option value="A1">A-</option>
         <option value="A1">B+</option>
@@ -51,7 +60,7 @@
         <option value="A1">C</option>
         <option value="A1">C-</option>
         <option value="A2">D+</option>
-        <option value="A3">D</option>
+        <option value="A2">D</option>
         <option value="A3">D-</option>
         <option value="A3">E</option>
         <option value="A3">KCPE Certificate</option>
@@ -60,22 +69,22 @@
 
         </select>
         <label class="text-black text-left" for="feser">Enter Your KNEC  Index Number</label><span style="color: #ff0000;"><strong>*</strong></span>
-        <input id="indexno" type="number" class="form-control" name="indexno" value="{{ old('indexno') }}" placeholder="e.g. 518105006" />
+        <input id="IndexNumber" type="number" class="form-control" name="IndexNumber" value="{{ old('IndexNumber') }}" placeholder="e.g. 518105006" />
         <label class="text-black text-left" for="feyear" >Enter Year of the Exam</label><span style="color: #ff0000;"><strong>*</strong></span>
-        <input id="feyear" type="number" min="2000" max="2022" class="form-control" name="feyear" placeholder=" e.g. 2020" value="{{ old('feyear') }}" />
+        <input id="Year" type="number" min="2000" max="2022" class="form-control" name="Year" placeholder=" e.g. 2020" value="{{ old('feyear') }}" />
 
         <label class="text-black text-left" for="course">Choose Course</label><span style="color: #ff0000;"><strong>*</strong></span>
-        <select id="course" name ="course" class="form-control">
-          <option value="{{ old('course')}}" disabled selected >Enter Grade First.</option>
+        <select id="Course" name ="Course" class="form-control">
+          <option value="{{ old('Course')}}" disabled selected >Enter Grade First.</option>
         </select>
         
 
         <label class="text-black text-left" for="mobile">Current Mobile Phone Number</label><span style="color: #ff0000;"><strong>*</strong></span>
-        <input type="text" class="form-control" name="mobile" id="inputphone" placeholder="e.g. 0734567890" value="{{ old('mobile') }}">
+        <input type="text" class="form-control" name="Phone" id="inputphone" placeholder="e.g. 0734567890" value="{{ old('Phone') }}">
         <label class="text-black text-left" for="inputEmail">Enter email Address</label><span style="color: #ff0000;"><strong>*</strong></span>
-        <input type="email" class="form-control" name="email" id="inputName" placeholder="e.g. janedoe@yahoo.com " value="{{ old('email') }}">
+        <input type="email" class="form-control" name="Email" id="inputName" placeholder="e.g. janedoe@yahoo.com " value="{{ old('Email') }}">
         <label class="text-black text-left" for="address">Enter Current Mailing Address</label><span style="color: #ff0000;"><strong>*</strong></span>
-        <input type="text" class="form-control" name="address" id="address" placeholder="e.g. P.O. Box 123456789 -00200- Nairobi " value="{{ old('address') }}">
+        <input type="text" class="form-control" name="Address" id="Address" placeholder="e.g. P.O. Box 123456789 -00200- Nairobi " value="{{ old('Address') }}">
         <label class="text-black text-left" for="fileinput">Upload Transcript / Certificate (For examination and grade above)</label><span style="color: #ff0000;"><strong>*</strong></span>
 
         <div class="form-group">
@@ -104,13 +113,13 @@
 }
 
     function changecat(value) {
-        if (value.length == 0) document.getElementById("course").innerHTML = "<option></option>";
+        if (value.length == 0) document.getElementById("Course").innerHTML = "<option></option>";
         else {
             var catOptions = "";
             for (categoryId in courses[value]) {
                 catOptions += "<option>" + courses[value][categoryId] + "</option>";
             }
-            document.getElementById("course").innerHTML = catOptions;
+            document.getElementById("Course").innerHTML = catOptions;
         }
     }
 </script>
