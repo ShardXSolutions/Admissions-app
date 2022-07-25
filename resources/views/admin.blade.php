@@ -1,40 +1,149 @@
-
-@extends('layouts.auth')
+@extends('layouts.dash')
 
 @section('content')
+<div class="container-fluid">
 
+<div class="row">
 
-
-<section class="bg-foundry">
-    <div class="container">
-      <div class="row h-100">
-<div class="container">
-   <div class="row justify-content-center">
-    <div class="col-md-14">
-      <div class="card">
-        <div class="card-header">{{ __('Admitted Students') }}</div>
-
+<!-- Earnings (Monthly) Card Example -->
+<div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-danger shadow h-100 py-2">
         <div class="card-body">
-
-
-          <div class="col-md-4" >
-            <form action="/search" method="get">
-              @csrf
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search this " name="search">
-                <div class="input-group-append">
-                  <button class="btn btn-secondary" type="submit"><i class="fa fa-search"></i></button>
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                        Total Applicants </div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $userCount }}</div>
+                
                 </div>
-              </div>
-            </form> 
+                <div class="col-auto">
+                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+<!-- Earnings (Monthly) Card Example -->
+<div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-info shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Generated Forms
+                    </div>
+                    <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $withFormsGenerated }}</div>
+                        </div>
+                        <div class="col">
+                            <div class="progress progress-sm mr-2">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: {{ ($withFormsGenerated/ $userCount)*100 }}%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <i class="fas fa-cogs fa-2x text-gray-300"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+<!-- Earnings (Monthly) Card Example -->
+<div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-info shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Self Placed (Walk In)
+                    </div>
+                    <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $walkIns }}</div>
+                        </div>
+                        <div class="col">
+                            <div class="progress progress-sm mr-2">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: {{ ($walkIns/ $userCount)*100 }}%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-          </div>
-<br />
+<div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-warning shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Female Applicants
+                    </div>
+                    <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $femaleApplicants  }}</div>
+                        </div>
+                        <div class="col">
+                            <div class="progress progress-sm mr-2">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: {{ ($femaleApplicants / $userCount)*100 }}%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <i class="fas fa-female fa-2x text-gray-300"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Applicant's List</h1>
+                   <br> <p class="mb-4"></p>
+                 
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">Table of Applicants (both KUCCPS Placed and Self Placed)
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="dataTables_length" id="dataTable_length">
+                                                <label>Show 
+                                                    <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
+                                                        <option value="10">10</option>
+                                                        <option value="25">25</option>
+                                                        <option value="50">50</option>
+                                                        <option value="100">100</option>
+                                                    </select> entries
+                                                </label>
+                                            </div>
+                                        </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div id="dataTable_filter" class="dataTables_filter">
+                                            <form action="/search" method="get">
+                                        @csrf
+                                            <label>Search:
+                                                <input type="text" class="form-control" placeholder="Search Applicants " name="search"></label>
+                                               
+                                                <button class="btn btn-secondary" type="submit"><i class="fa fa-search"></i></button>
+                                        </form>
 
-     {{ $admission->links() }}
-          <table class="table table-bordered">
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table class="table table-bordered dataTable" id="dataTable" role="grid" aria-describedby="dataTable_info" style="font-size: 0.750rem;width: 100%;" width="100%" cellspacing="0">
+                                   
             <thead>
               <th>Adm</th>
               <th>Full Name</th>
@@ -45,30 +154,31 @@
               <th>More</th>
             </thead>
             <tbody>
-              @foreach ($admission as $admi) 
+            @foreach ($admission as $admi) 
               <tr>
              
-                <td>{{ $admi->adm }} </td>
-                <td>{{ $admi->fullname }} </td>
-                <td>{{ $admi->course }} </td>
-                <td>{{ $admi->email }} </td>
-                <th>{{ $admi->mobile }}</th>
-                <td>{{ $admi->form_generated }}</td>
+                <td>{{ $admi->Adm }} </td>
+                <td>{{ $admi->StudentName }} </td>
+                <td>{{ $admi->Course }} </td>
+                <td>{{ $admi->Email }} </td>
+                <th>{{ $admi->Phone }}</th>
+                <td>{{ $admi->FormGenerated }}</td>
                 <td>
                     <a href="" data-hover="tooltip" data-placement="top" data-target="#modal-edit-customers{{ $admi->id }}" data-toggle="modal" id="modal-edit"  class="btn btn-primary">Edit</a>
                 </td>
               </tr>
               @endforeach
-            </tbody>
-          </table>
-          {{ $admission->links() }}
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-</div>
-</section>
-    <!-- End Multi step form -->   
-    @endsection
+                                    </tbody>
+                                </table></div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">
+
+                                </div></div>
+                                <div class="col-sm-12 col-md-7">
+                                    <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+                                    {{ $admission->onEachSide(3)->links() }}
+                                    </div></div></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            @endsection

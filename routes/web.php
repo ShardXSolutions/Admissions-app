@@ -1,5 +1,7 @@
 <?php
-
+use Illuminate\Support\Facades\Route;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\KuccpsPlacedStudents;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +17,7 @@ Route::get('/', function () {
     return view('index');
 });
 //Auth::routes(['register' => false]);
+//Auth::Logout();
 Auth::routes();
 Route::resource('admission','AdmissionController');
 Route::group(['middleware' => ['web']], function () {
@@ -29,5 +32,7 @@ Route::post('apply',['as'=>'apply','uses'=>'AdmissionController@create']);
 Route::get('/new', function () {
     return view  ('admission.newapplicant');
  });
- /* 
- */
+ Route::get('/import', 'HomeController@import');
+ Route::post('/import', 'HomeController@importData');
+
+ //Route::get('/export', 'HomeController@exportData');

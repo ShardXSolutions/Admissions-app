@@ -12,10 +12,10 @@ flush();
     $pdf->useTemplate($tplIdx, 0, 0); 
 
     $pdf->SetFont('Helvetica', '', 12);
-    $pdf->Text(37,45, strtoupper($admission->fullname));
-    $pdf->Text(37,60, strtok(strtoupper($admission->fullname),' ').",");
-    $pdf->Text(106,76,strtoupper("-".$admission->adm));
-    $pdf->Text(26,93,strtoupper($admission->course));
+    $pdf->Text(37,45, strtoupper($admission->StudentName));
+    $pdf->Text(37,60, strtok(strtoupper($admission->StudentName),' ').",");
+    $pdf->Text(106,76,strtoupper("-".$admission->Adm));
+    $pdf->Text(26,93,strtoupper($admission->Course));
     $pdf->Output('AdmissionForm.pdf','I');
    
 */
@@ -40,10 +40,10 @@ for ($pageNo = 1; $pageNo <= $pageCount; $pageNo++) {
     $pdf->SetTextColor(0, 0, 0);
 if($pageNo==1){
     /* now write some text above the imported page */
-    $pdf->Text(37,65, strtoupper($admission->fullname));
-    //$pdf->Text(37,55, strtok(strtoupper($admission->fullname),' ').",");
-    $pdf->Text(53,75,strtoupper(" - ".$admission->adm));
-    $pdf->Text(44,85,strtoupper($admission->course));
+    $pdf->Text(37,65, strtoupper($admission->StudentName));
+    //$pdf->Text(37,55, strtok(strtoupper($admission->StudentName),' ').",");
+    $pdf->Text(53,75,strtoupper(" - ".$admission->Adm));
+    $pdf->Text(44,85,strtoupper($admission->Course));
   }
 }
 

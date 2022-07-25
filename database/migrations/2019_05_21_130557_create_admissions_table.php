@@ -2,30 +2,30 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use App\Models\Admissions;
+
 class CreateAdmissionsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
-        Schema::create('admission', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('adm');
-            $table->bigInteger('indexno')->length(11);
-            $table->integer('feyear')->length(4);
-            $table->string('fullname');
-            $table->string('mobile'); 
-            $table->string('email');  
-            $table->string('address');
-            $table->string('course');
-            $table->string('level'); 
-            $table->boolean('form_generated');        
+        
+        Schema::create('admissions', function (Blueprint $table) {
+            $table->id();
+            $table->string('Adm')->unique();
+            $table->bigInteger('IndexNumber')->length(11)->unique();
+            $table->integer('Year')->length(4);
+            $table->string('StudentName')->length(50);
+            $table->string('Gender')->length(6);
+            $table->string('Phone')->default('None');
+            $table->string('AltPhone')->default('None');
+            $table->string('Email')->default('None');
+            $table->string('AltEmail')->default('None');
+            $table->string('Address')->default('None');
+            $table->string('Course')->length(100);
+            $table->string('Level')->length(20);
+            $table->boolean('FormGenerated')->default(0);
             $table->timestamps();
-        });
+
+    });
     }
 
     /**
@@ -35,6 +35,7 @@ class CreateAdmissionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admission');
+        Schema::dropIfExists('admissions');
+
     }
 }
