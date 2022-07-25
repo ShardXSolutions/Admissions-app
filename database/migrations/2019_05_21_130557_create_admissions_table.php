@@ -10,8 +10,8 @@ class CreateAdmissionsTable extends Migration
         
         Schema::create('admissions', function (Blueprint $table) {
             $table->id();
-            $table->string('Adm');
-            $table->bigInteger('IndexNumber')->length(11);
+            $table->string('Adm')->unique();
+            $table->bigInteger('IndexNumber')->length(11)->unique();
             $table->integer('Year')->length(4);
             $table->string('StudentName')->length(50);
             $table->string('Gender')->length(6);
