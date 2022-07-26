@@ -135,17 +135,19 @@ class AdmissionController extends Controller
     public function update(Request $request, $id)
     {
         $admission = Admission::find($id);
-        // dd($request);
+       
+        //dd($request);
+     
   
          $admission->Adm = $request->get('adm');
          $admission->StudentName = $request->get('fullname');
          $admission->Course = $request->get('course');
          $admission->Level = $request->get('level');
-         $admission->Year = $request->get('year');
+         $admission->Year = $request->get('feyear');
          $admission->Address = $request->get('address');
          $admission->Email = $request->get('email');
          $admission->phone = $request->get('mobile');
-         $admission->IndexNumber=$request->get('IndexNumber');
+         $admission->IndexNumber = $request->get('indexno');
          $admission->FormGenerated=1;
          $admission->save();
          return view('admission.pdf',['admission'=>$admission]);
@@ -157,6 +159,7 @@ class AdmissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+  
     public function destroy($id)
     {
         //

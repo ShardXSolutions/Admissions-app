@@ -34,5 +34,3 @@ Route::get('/new', function () {
  });
  Route::get('/import', 'HomeController@import');
  Route::post('/import', 'HomeController@importData');
-
- //Route::get('/export', 'HomeController@exportData');
