@@ -1,11 +1,12 @@
 <?php
 namespace App\Http\Controllers;
+
+use App\Admission; 
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Models\Admission;
 use Illuminate\Support\Facades\DB;
 
  class AdmissionAuthController extends Controller {
@@ -21,12 +22,12 @@ use Illuminate\Support\Facades\DB;
  		$fyear= $request->input('feyear');
     // Check validation 
 	
- 		$checkLogin = DB::table('admissions')->where(['indexno'=>$indexnum,'feyear'=>$fyear])->get();
+ 		$checkLogin = Admission::where(['IndexNumber'=>$indexnum,'Year'=>$fyear])->get();
  		
 		//dd(count($checkLogin));
 		 if(count($checkLogin) > 0){
 
- 			$admission = DB::table('admissions')->where('indexno', $indexnum)->first();
+ 			$admission = DB::table('admissions')->where('IndexNumber', $indexnum)->first();
  			
 
  			return view("admission.kuccps",['admission'=>$admission]);

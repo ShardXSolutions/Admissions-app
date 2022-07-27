@@ -1,4 +1,5 @@
 @extends('layouts.dash')
+@section('title','Dashboard')
 
 @section('content')
 <div class="container-fluid">
@@ -17,7 +18,7 @@
                 
                 </div>
                 <div class="col-auto">
-                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    <i class="fas fa-calendar fa-2x text-gray-500"></i>
                 </div>
             </div>
         </div>
@@ -44,7 +45,7 @@
                     </div>
                 </div>
                 <div class="col-auto">
-                    <i class="fas fa-cogs fa-2x text-gray-300"></i>
+                    <i class="fas fa-cogs fa-2x text-gray-500"></i>
                 </div>
             </div>
         </div>
@@ -71,7 +72,7 @@
                     </div>
                 </div>
                 <div class="col-auto">
-                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                    <i class="fas fa-clipboard-list fa-2x text-gray-500"></i>
                 </div>
             </div>
         </div>
@@ -97,7 +98,7 @@
                     </div>
                 </div>
                 <div class="col-auto">
-                    <i class="fas fa-female fa-2x text-gray-300"></i>
+                    <i class="fas fa-female fa-2x text-gray-500"></i>
                 </div>
             </div>
         </div>
@@ -117,14 +118,7 @@
                                     <div class="row">
                                         <div class="col-sm-12 col-md-6">
                                             <div class="dataTables_length" id="dataTable_length">
-                                                <label>Show 
-                                                    <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
-                                                        <option value="10">10</option>
-                                                        <option value="25">25</option>
-                                                        <option value="50">50</option>
-                                                        <option value="100">100</option>
-                                                    </select> entries
-                                                </label>
+                                                
                                             </div>
                                         </div>
                                     <div class="col-sm-12 col-md-6">
@@ -162,9 +156,67 @@
                 <td>{{ $admi->Course }} </td>
                 <td>{{ $admi->Email }} </td>
                 <th>{{ $admi->Phone }}</th>
-                <td>{{ $admi->FormGenerated }}</td>
+                <td>@if ($admi->FormGenerated=='1')<a type="button" href="#" class="btn btn-info btn-circle">
+                                    <i class="fa fa-check"></i>
+                                    </a>@else
+                                        <a type="button" href="#" class="btn btn-danger btn-circle">
+                                    <i class="fa fa-times "></i>
+                                    </a>
+                                        @endif</td>
                 <td>
-                    <a href="" data-hover="tooltip" data-placement="top" data-target="#modal-edit-customers{{ $admi->id }}" data-toggle="modal" id="modal-edit"  class="btn btn-primary">Edit</a>
+                    <a href="#" data-target="#Modal-{{ $admi->id }}" data-toggle="modal"   class="btn btn-primary">Edit</a>
+                    <!-- Modal -->
+                            <div class="modal fade" id="Modal-{{ $admi->id }}" role="dialog">
+                                <div class="modal-dialog">
+                                
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header"><h4 class="modal-title">{{ $admi->Adm }}</h4>
+                                   <!-- <button  class="close" >&times;</button> -->
+                                    <a type="button" href="#" class="btn btn-danger btn-circle" data-dismiss="modal">
+                                    <i class="fas fa-power-off"></i>
+                                    </a>
+                                    </div>
+                                    <div class="modal-body">
+                                    
+                                        <form method="post" action="{{ route('admission.update', $admi->id) }}">
+                                        @method('PATCH')
+                                        @csrf
+                                            <input type="hidden" class="form-control" name="indexno" value="{{ $admi->IndexNumber }}" />
+                                            <input type="hidden" class="form-control" name="feyear" value="{{ $admi->Year }}" />
+                                            <input type="hidden" class="form-control" name="level" value="{{ $admi->Level }}" />
+                                            <input type="hidden" class="form-control" name="adm" value="{{ $admi->Adm }}" readonly /> 
+                                            Full Name
+                                            <input type="text" class="form-control" name="fullname" value="{{ $admi->StudentName }}" readonly /> <br>
+                                            Course
+                                            <input type="text" class="form-control" name="course" value="{{ $admi->Course }}" readonly /> <br>
+                                            
+                                            @if(($admi->Email)==" ")
+                                                <br>
+                                                Phone Number
+                                                <input type="number" class="form-control" name="mobile" value="0722000000" /><br>
+                                                Email
+                                                <input type="email" class="form-control" name="email" value="info@example.com" /><br>
+                                                Address
+                                                <input type="text" class="form-control" name="address" value="P.O. Box 0 " />
+
+                                            @else
+                                                <input type="hidden" class="form-control" name="mobile" value="{{ $admi->Phone }}" />
+                                                <input type="hidden" class="form-control" name="email" value="{{ $admi->Email }}" />
+                                                <input type="hidden" class="form-control" name="address" value="{{ $admi->Address }}" />
+                                                
+                                                                                               
+                                            @endif
+                                        
+                                        <br>
+                                        <Button type="submit" name="previous" class="btn btn-success">Generate Admission Form</Button> 
+                                        </form>
+
+                                    </div>
+                                </div>
+                                
+                                </div>
+                            </div>
                 </td>
               </tr>
               @endforeach
@@ -174,7 +226,7 @@
                                 </div></div>
                                 <div class="col-sm-12 col-md-7">
                                     <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
-                                    {{ $admission->onEachSide(3)->links() }}
+                                    {{ $admission->links() }}
                                     </div></div></div></div>
                             </div>
                         </div>

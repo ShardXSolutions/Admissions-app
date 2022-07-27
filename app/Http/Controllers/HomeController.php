@@ -38,7 +38,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-       $admission = Admission::orderBy('adm', 'asc')->paginate(20);
+       $admission = Admission::orderBy('Adm', 'asc')->paginate(20);
        $userCount=Admission::all()->count();
        $withFormsGenerated=Admission::where('FormGenerated',1)->count();
        $walkIns=Admission::where('Adm','like','%PROV%')->count();
@@ -131,24 +131,19 @@ class HomeController extends Controller
 
     public function search(Request $request){
         $search=$request->get('search');
-       // dd($search);
-        $admission=Admission::where('Adm','like','%'.$search. '%' )
-                                        ->orWhere('StudentName','like','%' .$search.'%')
-                                        ->orWhere('Course','like','%'.$search.'%')
-                                        ->orWhere('Email','like','%'.$search.'%')
-                                        ->orWhere('Phone','like','%'.$search.'%')
-                                        ->orWhere('FormGenerated','=','%'.$search.'%')
-                                        ->orderBy('Adm', 'asc')
-                                        ->paginate(20); 
+        $admission=Admission::Where('StudentName','like','%' .$search.'%')
+                                        ->orwhere('Course','like','%' .$search.'%')
+                                         ->orderBy('Adm', 'asc')
+                                         ->paginate(20); 
 
-    
-                                        $admission = Admission::orderBy('adm', 'asc')->paginate(20);
-                                        $userCount=Admission::all()->count();
-                                        $withFormsGenerated=Admission::where('FormGenerated',1)->count();
-                                        $walkIns=Admission::where('Adm','like','%PROV%')->count();
-                                        $femaleApplicants=Admission::where('Gender','=','FEMALE')->count();
-                                        
-                                        return view('admin', compact('admission','userCount','withFormsGenerated','walkIns','femaleApplicants'));
+        
+        $userCount=Admission::all()->count();
+        $withFormsGenerated=Admission::where('FormGenerated',1)->count();
+        $walkIns=Admission::where('Adm','like','%PROV%')->count();
+        $femaleApplicants=Admission::where('Gender','=','FEMALE')->count();
+                                       
+       //dd($admission);               
+        return view('admin', compact('admission','userCount','withFormsGenerated','walkIns','femaleApplicants'));
                                      
  
     }
