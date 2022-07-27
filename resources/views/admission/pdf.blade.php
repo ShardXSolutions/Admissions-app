@@ -46,8 +46,8 @@ if($pageNo==1){
     $pdf->Text(44,85,strtoupper($admission->Course));
   }
 }
-
-$pdf->Output('AdmissionForm.pdf','I');
+$vars = strtolower(strtok($admission->StudentName," "));
+$pdf->Output($vars.'-AdmForm.pdf','I');
 
 ob_flush();
 @endphp

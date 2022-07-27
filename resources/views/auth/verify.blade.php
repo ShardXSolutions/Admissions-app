@@ -1,4 +1,5 @@
 @extends('layouts.auth')
+@section('title', 'Verify Me')
 
 @section('content')
 <div class="container">

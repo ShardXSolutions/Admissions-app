@@ -38,7 +38,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-       $admission = Admission::orderBy('adm', 'asc')->paginate(20);
+       $admission = Admission::orderBy('Adm', 'asc')->paginate(20);
        $userCount=Admission::all()->count();
        $withFormsGenerated=Admission::where('FormGenerated',1)->count();
        $walkIns=Admission::where('Adm','like','%PROV%')->count();
@@ -131,12 +131,10 @@ class HomeController extends Controller
 
     public function search(Request $request){
         $search=$request->get('search');
-        $admission=Admission::where('Adm','=','%'.$search. '%' )
-                                        ->orWhere('StudentName','like','%' .$search.'%')
-                                        ->orWhere('Course','like','%'.$search.'%')
-                                        ->orWhere('Email','like','%'.$search.'%')
-                                        ->orWhere('Phone','like','%'.$search.'%')
-                                        ->orderBy('Adm', 'asc'); 
+        $admission=Admission::Where('StudentName','like','%' .$search.'%')
+                                        ->orwhere('Course','like','%' .$search.'%')
+                                         ->orderBy('Adm', 'asc')
+                                         ->paginate(20); 
 
         
         $userCount=Admission::all()->count();

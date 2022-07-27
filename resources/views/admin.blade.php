@@ -1,4 +1,5 @@
 @extends('layouts.dash')
+@section('title','Dashboard')
 
 @section('content')
 <div class="container-fluid">
@@ -17,7 +18,7 @@
                 
                 </div>
                 <div class="col-auto">
-                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    <i class="fas fa-calendar fa-2x text-gray-500"></i>
                 </div>
             </div>
         </div>
@@ -44,7 +45,7 @@
                     </div>
                 </div>
                 <div class="col-auto">
-                    <i class="fas fa-cogs fa-2x text-gray-300"></i>
+                    <i class="fas fa-cogs fa-2x text-gray-500"></i>
                 </div>
             </div>
         </div>
@@ -71,7 +72,7 @@
                     </div>
                 </div>
                 <div class="col-auto">
-                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                    <i class="fas fa-clipboard-list fa-2x text-gray-500"></i>
                 </div>
             </div>
         </div>
@@ -97,7 +98,7 @@
                     </div>
                 </div>
                 <div class="col-auto">
-                    <i class="fas fa-female fa-2x text-gray-300"></i>
+                    <i class="fas fa-female fa-2x text-gray-500"></i>
                 </div>
             </div>
         </div>
@@ -117,14 +118,7 @@
                                     <div class="row">
                                         <div class="col-sm-12 col-md-6">
                                             <div class="dataTables_length" id="dataTable_length">
-                                                <label>Show 
-                                                    <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
-                                                        <option value="10">10</option>
-                                                        <option value="25">25</option>
-                                                        <option value="50">50</option>
-                                                        <option value="100">100</option>
-                                                    </select> entries
-                                                </label>
+                                                
                                             </div>
                                         </div>
                                     <div class="col-sm-12 col-md-6">
@@ -162,7 +156,13 @@
                 <td>{{ $admi->Course }} </td>
                 <td>{{ $admi->Email }} </td>
                 <th>{{ $admi->Phone }}</th>
-                <td>{{ $admi->FormGenerated }}</td>
+                <td>@if ($admi->FormGenerated=='1')<a type="button" href="#" class="btn btn-info btn-circle">
+                                    <i class="fa fa-check"></i>
+                                    </a>@else
+                                        <a type="button" href="#" class="btn btn-danger btn-circle">
+                                    <i class="fa fa-times "></i>
+                                    </a>
+                                        @endif</td>
                 <td>
                     <a href="#" data-target="#Modal-{{ $admi->id }}" data-toggle="modal"   class="btn btn-primary">Edit</a>
                     <!-- Modal -->

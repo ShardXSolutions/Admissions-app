@@ -1,4 +1,5 @@
 @extends('layouts.auth')
+@section('title', 'Enter Email')
 
 @section('content')
 <div class="container">
