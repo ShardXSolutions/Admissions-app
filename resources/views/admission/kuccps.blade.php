@@ -1,8 +1,5 @@
 @extends('layouts.auth')
-@section('title')
- <title>KUCCPS Enrolled Candidates</title>
-    
-@endsection
+@section('title','KUCCPS Enrolled Candidates')
 @section('content')
 
 <div class="container"> 
@@ -44,16 +41,20 @@
           <br>Phone Number
           
 
-          <input type="number" class="form-control" name="mobile" value="{{ $admission->Phone }}" />
+          <input type="number" class="form-control" name="mobile" min="100000000" max="2999999999" value="" required />
           <br>Email
         
-          <input type="email" class="form-control" name="email" value="{{ $admission->Email }}" />
+          <input type="email" class="form-control" name="email" value="" required />
           <br>Address
           
 
-          <input type="text" class="form-control" name="address" value="{{ $admission->Address }}" />
+          <input type="text" class="form-control" name="address" value="" required />
+        @else
+        <input type="number" class="form-control" name="mobile" value="{{ $admission->Phone }}" hidden />
+        <input type="email" class="form-control" name="email" value="{{ $admission->Email }}" hidden />
+        <input type="text" class="form-control" name="address" value="{{ $admission->Address }}" hidden />
         @endif
-</br>
+          </br>
            <Button type="submit" name="previous" class="btn btn-success">Generate Admission Form</Button> 
           
                                         
