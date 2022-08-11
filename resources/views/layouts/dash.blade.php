@@ -240,7 +240,10 @@
             </div>
         </div>
     </div>
-    <!------ edit modal ----->
+    <!------/ edit modal ----->
+    <!--- Required Javascript from blade --->
+    @yield('script')
+    <!--- /Required Javascript from blade --->
    
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>

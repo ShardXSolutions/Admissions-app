@@ -104,7 +104,82 @@
         </div>
     </div>
 </div>
-    <!-- Page Heading -->
+
+<div class="row">
+
+                        <!-- Area Chart -->
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Summary by Placement Type</h6>
+                                   
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-pie pt-4 pb-2"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                        <canvas id="myPieChart" style="display: block; width: 288px; height: 245px;" class="chartjs-render-monitor" width="288" height="245"></canvas>
+
+                                    </div>
+                                    <div class="mt-4 text-center small">
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-primary"></i> KUCCPS
+                                        </span>
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-success"></i> Self Placed
+                                        </span>
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Summary by gender</h6>
+                                   
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-pie pt-4 pb-2"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                        <canvas id="myPieChart1" style="display: block; width: 288px; height: 245px;" class="chartjs-render-monitor" width="288" height="245"></canvas>
+                                    </div>
+                                    <div class="mt-4 text-center small">
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-primary"></i> Male
+                                        </span>
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-success"></i> Female
+                                        </span>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Pie Chart -->
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Summary by Course</h6>
+                                   
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-pie pt-4 pb-2"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                        <canvas id="myPieChart2" style="display: block; width: 288px; height: 245px;" class="chartjs-render-monitor" width="288" height="245"></canvas>
+                                    </div>
+                                    <div class="mt-4 text-center small">
+                                        Colour scheme auto generated
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+<!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Applicant's List</h1>
                    <br> <p class="mb-4"></p>
                  
@@ -134,6 +209,7 @@
                                             </div>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <table class="table table-bordered dataTable" id="dataTable" role="grid" aria-describedby="dataTable_info" style="font-size: 0.750rem;width: 100%;" width="100%" cellspacing="0">
@@ -233,4 +309,136 @@
                     </div>
 
                 </div>
+
+            @endsection
+            @section('script')
+         
+<script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
+ <script>
+    // Set new default font family and font color to mimic Bootstrap's default styling
+Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+Chart.defaults.global.defaultFontColor = '#858796';
+
+// Pie Chart Example
+var ctx = document.getElementById("myPieChart");
+var cty=document.getElementById("myPieChart1");
+var ctz=document.getElementById("myPieChart2");
+
+var myPieChart = new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ["KUCCPS Placed", "Self Placed"],
+    datasets: [{
+      data: [{{ $userCount-$walkIns}}, {{ $walkIns }}],
+      backgroundColor: ['#4e73df', '#1cc88a'],
+      hoverBackgroundColor: ['#2e59d9', '#17a673'],
+      hoverBorderColor: "rgba(234, 236, 244, 1)",
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+    },
+    legend: {
+      display: false
+    },
+    cutoutPercentage: 80,
+  },
+});
+
+var myPieChart1 = new Chart(cty, {
+  type: 'doughnut',
+  data: {
+    labels: ["Male", "Female"],
+    datasets: [{
+      data: [{{ $userCount-$femaleApplicants}}, {{ $femaleApplicants }}],
+      backgroundColor: ['#4e73df', '#1cc88a'],
+      hoverBackgroundColor: ['#2e59d9', '#17a673'],
+      hoverBorderColor: "rgba(234, 236, 244, 1)",
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+    },
+    legend: {
+      display: false
+    },
+    cutoutPercentage: 80,
+  },
+});
+
+var courseData=JSON.parse(JSON.stringify(<?php echo $courseNumbers ?> ));
+courseData.pop();
+    let courseLabels = [];
+    let numbers = [];
+    var chartcolours = [];
+
+    try {
+        courseData.map((item) => {
+        courseLabels.push(item[0]);
+        numbers.push(item[1]);
+        chartcolours.push("#"+Math.floor(Math.random()*16777215).toString(16));
+        });
+    } catch (error) {
+        console.log(error);
+    }
+    courseLabels.shift();
+    numbers.shift();
+    chartcolours.shift();
+
+
+
+console.log(chartcolours);
+
+var myPieChart2 = new Chart(ctz, {
+  type: 'polarArea',
+  data: {
+    labels:courseLabels,
+    datasets: [{
+      data:numbers,
+      backgroundColor: chartcolours,
+     hoverBackgroundColor:chartcolours,
+     hoverBorderColor: chartcolours,
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 1,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+      footerFontSize:8,
+
+    },
+    legend: {
+      display: false
+    },
+    cutoutPercentage: 80,
+  },
+});
+ </script>
+ 
+
             @endsection

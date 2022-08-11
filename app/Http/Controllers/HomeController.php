@@ -43,9 +43,35 @@ class HomeController extends Controller
        $withFormsGenerated=Admission::where('FormGenerated',1)->count();
        $walkIns=Admission::where('Adm','like','%PROV%')->count();
        $femaleApplicants=Admission::where('Gender','=','FEMALE')->count();
-       
-        return view('admin', compact('admission','userCount','withFormsGenerated','walkIns','femaleApplicants'));
+
+      
+       $courseNumbers=json_encode($this->getCourseNumbers());
+        return view('admin', compact('admission','userCount','withFormsGenerated','walkIns','femaleApplicants','courseNumbers'));
     
+    }
+    private function getCourseNumbers():array{
+        $courses = DB::table('admissions')
+
+        ->select(
+ 
+         DB::raw('Course as course'),
+ 
+         DB::raw('count(*) as number'))
+ 
+        ->groupBy('Course')
+ 
+        ->get();
+ 
+     $courseArray[] = ['Course', 'Number'];
+ 
+     foreach($courses as $key => $value)
+ 
+     {
+ 
+       $courseArray[++$key] = [$value->course, $value->number];
+ 
+     }
+     return $courseArray;
     }
     public function import(){
         $admission = DB::table('admissions')->orderBy('adm', 'asc')->paginate(20);
@@ -77,7 +103,7 @@ class HomeController extends Controller
                 foreach ( $row_range as $row ) {
                     $data[] = [
                         'Adm'=>$this->formatAdmission($incrementer),
-                        'IndexNumber' =>substr($sheet->getCell( 'B' . $row )->getValue(),0,11),
+                        'IndexNumber' =>strtok($sheet->getCell( 'B' . $row )->getValue(),"/"),
                         'Year'=>substr($sheet->getCell( 'B' . $row )->getValue(),-4),
                         'StudentName' => strtoUpper($sheet->getCell( 'C' . $row )->getValue()),
                         'Gender'=>($sheet->getCell( 'D' . $row )->getValue()=="F")?"FEMALE":"MALE",

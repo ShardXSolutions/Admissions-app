@@ -75,7 +75,7 @@
               
 <br><br>
            
-                  <a href="{{ url('http://admission.edtti.ac.ke/') }}" class="btn bg-danger btn-outline btn-xl js-scroll-trigger">OK</a>
+                  <a href="{{ url('/') }}" class="btn bg-danger btn-outline btn-xl js-scroll-trigger">OK</a>
                
        
     </div>
