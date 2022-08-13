@@ -1,7 +1,8 @@
 @php
-use setasign\Fpdi\Fpdi;
-flush();
-/* 
+    use setasign\Fpdi\Fpdi;
+
+    flush();
+    /* 
     Old Code
     $pdf = new Fpdi();
     $pdf->SetCreator("Script by Shadrack Kimutai (0724226334)");
@@ -18,36 +19,44 @@ flush();
     $pdf->Text(26,93,strtoupper($admission->Course));
     $pdf->Output('AdmissionForm.pdf','I');
    
-*/
+    */
 
-/* New Code */
-$pdf = new Fpdi();
+    /* New Code */
+    $pdf = new Fpdi();
     $pdf->SetCreator("Script by Shadrack Kimutai (0724226334)");
     $pdf->SetDisplayMode('real');
+    
+    
+   
 
-/* set the source file */
-$pageCount = $pdf->setSourceFile("edtti_blank.pdf");
+    /* set the source file */
+    $pageCount = $pdf->setSourceFile("edtti_blank.pdf");
 
-for ($pageNo = 1; $pageNo <= $pageCount; $pageNo++) {
-    $tplIdx = $pdf->importPage($pageNo);
+    for ($pageNo = 1; $pageNo <= $pageCount; $pageNo++) {
+        $tplIdx = $pdf->importPage($pageNo);
 
-    /* add a page */
-    $pdf->AddPage();
-    $pdf->useTemplate($tplIdx, 0, 0);
+        /* add a page */
+        $pdf->AddPage();
+        $pdf->useTemplate($tplIdx, 0, 0);
 
-    /* font and color selection */
-    $pdf->SetFont('Helvetica', '', 11);
-    $pdf->SetTextColor(0, 0, 0);
-if($pageNo==1){
-    /* now write some text above the imported page */
-    $pdf->Text(37,65, strtoupper($admission->StudentName));
-    //$pdf->Text(37,55, strtok(strtoupper($admission->StudentName),' ').",");
-    $pdf->Text(53,75,strtoupper(" - ".$admission->Adm));
-    $pdf->Text(44,85,strtoupper($admission->Course));
-  }
-}
-$vars = strtolower(strtok($admission->StudentName," "));
-$pdf->Output($vars.'-AdmForm.pdf','I');
+        /* font and color selection */
+        $pdf->SetFont('Helvetica', '', 11);
+        $pdf->SetTextColor(0, 0, 0);
+        if($pageNo==1){
+            /* now write some text above the imported page */
+            $pdf->Text(37,65, strtoupper($admission->StudentName));
+            //$pdf->Text(37,55, strtok(strtoupper($admission->StudentName),' ').",");
+            $pdf->Text(53,75,strtoupper(" - ".$admission->Adm));
+            $pdf->Text(44,85,strtoupper($admission->Course));
+            //$pdf->Text(44,105,$qrcodeurl);
+            $pdf->Image($qrcodeurl,0,47,20,20);
+            
+        }
+        $pdf->Text(100,290,$pageNo);
+       
+    }
+    $vars = strtolower(strtok($admission->StudentName," "));
+    $pdf->Output($vars.'-AdmForm.pdf','I');
 
-ob_flush();
+    ob_flush();
 @endphp

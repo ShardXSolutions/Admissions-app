@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use Mail;
+
 use App\Admission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Mail\Mailer;
+use App\Http\Controllers\QrCode;
+use Illuminate\Support\Facades\Storage;
 
 class AdmissionController extends Controller
 {
@@ -97,9 +98,15 @@ class AdmissionController extends Controller
        // dd($request);
        
        // Mail::to('shadychiri@gmail.com')->send(new Mailer($mailingData));
-
+        $barCodeData= $admission->Adm."|".$admission->StudentName."|".$admission->Course;
+        $image = \QrCode::format('png')
+            ->size(200)->errorCorrection('H')
+            ->generate($barCodeData);
+        $output_file = '/img/qr-code/qrcode.png';
+        Storage::disk('public')->put($output_file, $image);
+        $contentUrl = Storage::disk('public')->path('/img/qr-code/qrcode.png');
         
-       return view('admission.pdf',['admission'=>$admission])->with('message', 'Your application is successful');
+       return view('admission.pdf',['admission'=>$admission,'qrcodeurl'=>$contentUrl])->with('message', 'Your application is successful');
         //
     }
 
@@ -150,7 +157,16 @@ class AdmissionController extends Controller
          $admission->IndexNumber = $request->get('indexno');
          $admission->FormGenerated=1;
          $admission->save();
-         return view('admission.pdf',['admission'=>$admission]);
+         
+        $barCodeData= $admission->Adm."|".$admission->StudentName."|".$admission->Course;
+         $image = \QrCode::format('png')
+         ->size(200)->errorCorrection('H')
+         ->generate($barCodeData);
+        $output_file = '/img/qr-code/qrcode.png';
+        Storage::disk('public')->put($output_file, $image);
+        $contentUrl = Storage::disk('public')->path('/img/qr-code/qrcode.png');
+        
+        return view('admission.pdf',['admission'=>$admission,'qrcodeurl'=>$contentUrl]);
     }
 
     /**

@@ -18,7 +18,8 @@
         "phpoffice/phpspreadsheet": "^1.24",
         "phpunit/phpunit": "^8.5",
         "setasign/fpdf": "^1.8",
-        "setasign/fpdi": "2.2.0"
+        "setasign/fpdi": "2.2.0",
+        "simplesoftwareio/simple-qrcode": "^4.2"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
