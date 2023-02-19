@@ -38,7 +38,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-       $admission = Admission::orderBy('Adm', 'asc')->paginate(20);
+       $admission = Admission::orderBy('created_at', 'desc')->paginate(20);
        $userCount=Admission::all()->count();
        $withFormsGenerated=Admission::where('FormGenerated',1)->count();
        $walkIns=Admission::where('Adm','like','%PROV%')->count();
@@ -71,10 +71,12 @@ class HomeController extends Controller
        $courseArray[++$key] = [$value->course, $value->number];
  
      }
+
+     //dd($courseArray);
      return $courseArray;
     }
     public function import(){
-        $admission = DB::table('admissions')->orderBy('adm', 'asc')->paginate(20);
+        $admission = DB::table('admissions')->orderBy('created_at', 'desc')->paginate(20);
         return view('import',['admission' => $admission]);
     }
 /*
@@ -159,7 +161,7 @@ class HomeController extends Controller
         $search=$request->get('search');
         $admission=Admission::Where('StudentName','like','%' .$search.'%')
                                         ->orwhere('Course','like','%' .$search.'%')
-                                         ->orderBy('Adm', 'asc')
+                                         ->orderBy('created_at', 'desc')
                                          ->paginate(20); 
 
         
@@ -172,6 +174,15 @@ class HomeController extends Controller
         return view('admin', compact('admission','userCount','withFormsGenerated','walkIns','femaleApplicants'));
                                      
  
+    }
+
+    public function updateContacted(Request $request, $id)
+    {
+       dd($id);
+        $admission = Admission::find($id);
+        $admission->FormGenerated=1;
+        $admission->save();
+        return redirect()->back();
     }
     
 }

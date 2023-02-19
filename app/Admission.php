@@ -20,5 +20,6 @@ class Admission extends Model
     'Course',
     'Level',
     'FormGenerated',
+    'Contacted',
 	];
 }

@@ -218,10 +218,10 @@
               <th>Adm</th>
               <th>Full Name</th>
               <th>Course</th>
-              <th>EMail</th>
-              <th>Mobile</th>
+              <th>Applied on</th>
               <th>Form Generated</th>
-              <th>More</th>
+              <th>Contact</th>
+              <th>Edit</th>
             </thead>
             <tbody>
             @foreach ($admission as $admi) 
@@ -230,8 +230,7 @@
                 <td>{{ $admi->Adm }} </td>
                 <td>{{ $admi->StudentName }} </td>
                 <td>{{ $admi->Course }} </td>
-                <td>{{ $admi->Email }} </td>
-                <th>{{ $admi->Phone }}</th>
+                <td>{{ $admi->created_at }} </td>
                 <td>@if ($admi->FormGenerated=='1')<a type="button" href="#" class="btn btn-info btn-circle">
                                     <i class="fa fa-check"></i>
                                     </a>@else
@@ -240,7 +239,47 @@
                                     </a>
                                         @endif</td>
                 <td>
-                    <a href="#" data-target="#Modal-{{ $admi->id }}" data-toggle="modal"   class="btn btn-primary">Edit</a>
+                    @if ($admi->Contacted=='1')
+                        <a type="button" href="#" class="btn btn-circle"  data-target="#Modal-contact-{{ $admi->id }}" data-toggle="modal" ><i class="fa fa-phone" style="font-size:32px; color:blue"></i></a>
+                    @else
+                        <a type="button" href="#" class="btn btn-circle"  data-target="#Modal-contact-{{ $admi->id }}" data-toggle="modal" ><i class="fa fa-phone" style="font-size:32px; color:red"></i></a>
+                    @endif
+                       
+                        <div class="modal fade" id="Modal-contact-{{ $admi->id }}" role="dialog">
+                                <div class="modal-dialog">
+                                    
+                                   
+                                    <div class="modal-content">
+                                                <div class="modal-header"><h4 class="modal-title">{{ $admi->Adm }}</h4>
+                                                    <a type="button" href="#" class="btn btn-danger btn-circle" data-dismiss="modal">
+                                                    <i class="fas fa-power-off"></i>
+                                                     </a>
+                                                </div>
+                                        <div class="modal-body">                                          
+                                             <h4>Phone Number: {{ $admi->Phone }}</h4>
+                                             <h4>Registered On: {{ $admi->created_at }}
+                                             <form method="post" action="{{ route('admission.update', $admi->id) }}">
+                                                @method('PATCH')
+                                                @csrf
+                                                <input type="hidden" class ="form-control" name="Adm" value="{{ $admi->Adm }}" />
+                                                <input type="hidden" class="form-control" name="contacted" value="1" />
+                                                <input type ="hidden" class="form-control" name="formgenerated" value="{{ $admi->FormGenerated }}" />
+                                                <input type="hidden" class="form-control" name ="nopdf" value="1"/>
+                                                <Button type="submit" name="previous" class="btn btn-success">Confirm Contacted</Button> 
+    
+                                             </form>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                        </div>
+                        
+                </td>
+                        
+                <td>
+                    <a type="button" href="#" class="btn btn-circle"  data-target="#Modal-{{ $admi->id }}" data-toggle="modal" ><i class="fa fa-cogs" style="font-size:32px; color:red"></i></a>
+
                     <!-- Modal -->
                             <div class="modal fade" id="Modal-{{ $admi->id }}" role="dialog">
                                 <div class="modal-dialog">
@@ -266,7 +305,10 @@
                                             <input type="text" class="form-control" name="fullname" value="{{ $admi->StudentName }}" readonly /> <br>
                                             Course
                                             <input type="text" class="form-control" name="course" value="{{ $admi->Course }}" readonly /> <br>
-                                            
+                                            <input type ="hidden" class="form-control" name="formgenerated" value="1" />
+                                            <input type ="hidden" class="form-control" name="contacted" value="{{ $admi->Contacted }} " readonly/>
+                                            <input type="hidden" class="form-control" name ="nopdf" value="0"/>
+
                                             @if(($admi->Email)==" ")
                                                 <br>
                                                 Phone Number
@@ -294,6 +336,7 @@
                                 </div>
                             </div>
                 </td>
+                
               </tr>
               @endforeach
                                     </tbody>

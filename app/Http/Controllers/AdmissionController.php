@@ -102,9 +102,9 @@ class AdmissionController extends Controller
         $image = \QrCode::format('png')
             ->size(200)->errorCorrection('H')
             ->generate($barCodeData);
-        $output_file = '/img/qr-code/qrcode.png';
+        $output_file = '/img/qr-code/'.$admission->StudentName.'.png';
         Storage::disk('public')->put($output_file, $image);
-        $contentUrl = Storage::disk('public')->path('/img/qr-code/qrcode.png');
+        $contentUrl = Storage::disk('public')->path('/img/qr-code/'.$admission->StudentName.'.png');
         
        return view('admission.pdf',['admission'=>$admission,'qrcodeurl'=>$contentUrl])->with('message', 'Your application is successful');
         //
@@ -143,31 +143,35 @@ class AdmissionController extends Controller
     {
         $admission = Admission::find($id);
        
-        //dd($request);
-     
-  
-         $admission->Adm = $request->get('adm');
-         $admission->StudentName = $request->get('fullname');
-         $admission->Course = $request->get('course');
-         $admission->Level = $request->get('level');
-         $admission->Year = $request->get('feyear');
-         $admission->Address = $request->get('address');
-         $admission->Email = $request->get('email');
-         $admission->phone = $request->get('mobile');
-         $admission->IndexNumber = $request->get('indexno');
-         $admission->FormGenerated=1;
-         $admission->save();
-         
-        $barCodeData= $admission->Adm."|".$admission->StudentName."|".$admission->Course;
-         $image = \QrCode::format('png')
-         ->size(200)->errorCorrection('H')
-         ->generate($barCodeData);
-        $output_file = '/img/qr-code/qrcode.png';
-        Storage::disk('public')->put($output_file, $image);
-        $contentUrl = Storage::disk('public')->path('/img/qr-code/qrcode.png');
+       //dd($request);
         
-        return view('admission.pdf',['admission'=>$admission,'qrcodeurl'=>$contentUrl]);
-    }
+        if($request->get('nopdf')==0){
+            $admission->Adm = $request->get('adm');
+            $admission->StudentName = $request->get('fullname');
+            $admission->Course = $request->get('course');
+            $admission->Level = $request->get('level');
+            $admission->Year = $request->get('feyear');
+            $admission->Address = $request->get('address');
+            $admission->Email = $request->get('email');
+            $admission->phone = $request->get('mobile');
+            $admission->IndexNumber = $request->get('indexno');
+            $admission->FormGenerated=$request->get('formgenerated');
+            $admission->save();
+            $barCodeData= $admission->Adm."|".$admission->StudentName."|".$admission->Course;
+            $image = \QrCode::format('png')
+            ->size(200)->errorCorrection('H')
+            ->generate($barCodeData);
+            $output_file = '/img/qr-code/'.$admission->StudentName.'.png';
+            Storage::disk('public')->put($output_file, $image);
+            $contentUrl = Storage::disk('public')->path('/img/qr-code/'.$admission->StudentName.'.png');
+            
+            return view('admission.pdf',['admission'=>$admission,'qrcodeurl'=>$contentUrl]);
+        }else{
+            $admission->Contacted=$request->get('contacted');
+            $admission->save();
+            return redirect()->back();
+            }
+        }
 
     /**
      * Remove the specified resource from storage.
@@ -176,6 +180,8 @@ class AdmissionController extends Controller
      * @return \Illuminate\Http\Response
      */
   
+  
+    
     public function destroy($id)
     {
         //

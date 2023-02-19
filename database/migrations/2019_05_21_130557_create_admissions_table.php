@@ -23,6 +23,7 @@ class CreateAdmissionsTable extends Migration
             $table->string('Course')->length(100);
             $table->string('Level')->length(20);
             $table->boolean('FormGenerated')->default(0);
+            $table->boolean('Contacted')->default(0);
             $table->timestamps();
 
     });

@@ -24,7 +24,7 @@ Route::group(['middleware' => ['web']], function () {
 Route::post('kuccpslounge', ['as'=>'kuccpslounge','uses'=>'AdmissionAuthController@login']);
 //Route::get('/home', 'HomeController@index' );
 Route::get('/admin',['as'=>'admin','uses'=>'HomeController@index']);
-
+Route::post('contacted','HomeController@updateContacted');
 Route::get('/search','HomeController@search');
 
 Route::post('apply',['as'=>'apply','uses'=>'AdmissionController@create']);
