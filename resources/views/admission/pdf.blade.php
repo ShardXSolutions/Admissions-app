@@ -37,10 +37,12 @@ for ($pageNo = 1; $pageNo <= $pageCount; $pageNo++) {
     $pdf->useTemplate($tplIdx, 0, 0);
 
     /* font and color selection */
-    $pdf->SetFont('Arial', '', 11);
+    $pdf->SetFont('Arial', '', 12);
     $pdf->SetTextColor(0, 0, 0);
 if($pageNo==1){
     /* now write some text above the imported page */
+    $pdf->Text(127,50, "Our Reference: ".strtoupper("KTVC/ADMS/0".date_format(date_create($dates->updated_at),'d/m/Y')));
+    $pdf->Text(164,55,"Date: ".strtoupper(date_format(date_create($dates->updated_at),'jS M, Y')));
     $pdf->Text(28,76, strtoupper($admission->StudentName));
     //$pdf->Text(30,85, strtok(strtoupper($admission->StudentName),' ').",");
     $pdf->Text(48,58,strtoupper("".$admission->Adm));
