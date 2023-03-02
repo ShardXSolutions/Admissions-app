@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Admission;
+use App\Settings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\QrCode;
@@ -105,8 +106,9 @@ class AdmissionController extends Controller
         $output_file = '/img/qr-code/'.$admission->StudentName.'.png';
         Storage::disk('public')->put($output_file, $image);
         $contentUrl = Storage::disk('public')->path('/img/qr-code/'.$admission->StudentName.'.png');
+        $settings =Settings::take(1)->first();
         
-       return view('admission.pdf',['admission'=>$admission,'qrcodeurl'=>$contentUrl])->with('message', 'Your application is successful');
+       return view('admission.pdf',['admission'=>$admission,'qrcodeurl'=>$contentUrl, 'dates'=>$settings])->with('message', 'Your application is successful');
         //
     }
 
@@ -164,8 +166,9 @@ class AdmissionController extends Controller
             $output_file = '/img/qr-code/'.$admission->StudentName.'.png';
             Storage::disk('public')->put($output_file, $image);
             $contentUrl = Storage::disk('public')->path('/img/qr-code/'.$admission->StudentName.'.png');
+            $settings =Settings::take(1)->first();
             
-            return view('admission.pdf',['admission'=>$admission,'qrcodeurl'=>$contentUrl]);
+            return view('admission.pdf',['admission'=>$admission,'qrcodeurl'=>$contentUrl,'dates'=>$settings]);
         }else{
             $admission->Contacted=$request->get('contacted');
             $admission->save();

@@ -21,6 +21,7 @@ flush();
 */
 
 /* New Code */
+
 $pdf = new Fpdi();
     $pdf->SetCreator("Script by Shadrack Kimutai (0724226334)");
     $pdf->SetDisplayMode('real');
@@ -44,6 +45,9 @@ if($pageNo==1){
     //$pdf->Text(30,85, strtok(strtoupper($admission->StudentName),' ').",");
     $pdf->Text(48,58,strtoupper("".$admission->Adm));
     $pdf->Text(12,91,strtoupper($admission->Course));
+
+    $pdf->Text(74,100,date_format(date_create($dates->SettingStartDate),'jS F, Y'));
+    $pdf->Text(178,100,date_format(date_create($dates->SettingEndDate),'jS F, Y'));
   }
 }
 
