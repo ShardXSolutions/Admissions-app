@@ -185,6 +185,7 @@ class AdmissionController extends Controller
     public function destroy($id)
     {
         //
+        dd($id);
     }
 
  

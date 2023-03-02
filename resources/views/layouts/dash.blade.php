@@ -66,11 +66,14 @@
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Admin Tools</span>
                 </a>
+                
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Tools:</h6>
-                        <a class="collapse-item" href="/import">Import from Excel</a>
-                     <!--    <a class="collapse-item" href="">Edit Student</a> -->
+                         <a class="collapse-item" href="/settings"><i class="fas fa-fw fa-calendar"></i>  Set Dates</a>
+                        <a class="collapse-item" href="/import"><i class="fas fa-fw fa-upload"></i>  Import from Excel</a> 
+                        <a class="collapse-item" href="/#"><i class="fas fa-fw fa-trash"></i>  Wipe Database</a>
+                      
                     </div>
                 </div>
             </li>
@@ -241,6 +244,17 @@
         </div>
     </div>
     <!------/ edit modal ----->
+    <!------Dialog ------>
+    <script>
+        var msg = '{{Session::get('alert')}}';
+        var exist = '{{Session::has('alert')}}';
+        if(exist){
+          alert('Updated');
+        }
+      </script>
+    <!------/Dialog ------>
+
+
     <!--- Required Javascript from blade --->
     @yield('script')
     <!--- /Required Javascript from blade --->

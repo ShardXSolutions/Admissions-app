@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Admissions;
+//use Admissions;
 
 use App\Admission;
+use App\Settings;
 
 use Illuminate\Http\Request;
 
@@ -122,9 +123,7 @@ class HomeController extends Controller
                    
                 
             }
-               //dd($data);
-                //DB::table('admissions')->insert($data);
-                Admission::insert($data);
+              Admission::insert($data);
             } catch (Exception $e) {
                 $error_code = $e->errorInfo[1];
                 return back()->withErrors('There was a problem uploading the data!');
@@ -184,5 +183,30 @@ class HomeController extends Controller
         $admission->save();
         return redirect()->back();
     }
+
+    public function settings(){
+       // dd($request);
+        return view('settings');
+    }
+    public function setsettings(Request $request){
+       //dd($request->get('startdate'));
+        /**/ 
+       $request->validate(['settingname'=> 'required',
+        'startdate' => 'required|date|after:today',
+        'enddate' => 'required|date|after:startdate'],['settingname.required'=>'Required',
+        'startdate.required'=>'Reporting Date is required and must be greater than today',
+        'enddate.required'=>'Enter end Date']);
+         
+        $Setting = Settings::updateOrCreate(
+            ['SNo'=>'1'],
+            ['SettingName' => $request->get('settingname'),
+            'SettingStartDate' =>$request->get('startdate'),
+            'SettingEndDate' => $request->get('enddate')]
+         );
+         //return redirect()->back();
+
+         return redirect()->back() ->with('alert', 'Updated!');
+         
+     }
     
 }

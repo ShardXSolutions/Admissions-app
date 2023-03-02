@@ -32,5 +32,7 @@ Route::post('apply',['as'=>'apply','uses'=>'AdmissionController@create']);
 Route::get('/new', function () {
     return view  ('admission.newapplicant');
  });
+ Route::get('/settings', 'HomeController@settings');
+ Route::post('/settings', 'HomeController@setsettings');
  Route::get('/import', 'HomeController@import');
  Route::post('/import', 'HomeController@importData');
