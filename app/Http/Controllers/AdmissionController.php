@@ -103,9 +103,12 @@ class AdmissionController extends Controller
         $image = \QrCode::format('png')
             ->size(200)->errorCorrection('H')
             ->generate($barCodeData);
-        $output_file = '/img/qr-code/'.$admission->StudentName.'.png';
+        $output_file = '/img/qr-code/'.$admission->Adm.'.png';
+        $output_app_file  = $nextID.'.'.$request->certfile->extension();
+        // dd($output_app_file);
         Storage::disk('public')->put($output_file, $image);
-        $contentUrl = Storage::disk('public')->path('/img/qr-code/'.$admission->StudentName.'.png');
+        Storage::disk('local')->putFileAs('/docs/' , $request->certfile,$output_app_file);
+        $contentUrl = Storage::disk('public')->path('/img/qr-code/'.$admission->Adm.'.png');
         $settings =Settings::take(1)->first();
         
        return view('admission.pdf',['admission'=>$admission,'qrcodeurl'=>$contentUrl, 'dates'=>$settings])->with('message', 'Your application is successful');

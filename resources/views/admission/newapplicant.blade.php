@@ -1,21 +1,15 @@
 @extends('layouts.auth')
-@section('title')
- <title>New Candidates</title>
-    
-@endsection
+@section('title','New Candidates')
 @section('content')
-
-    <div class="container">
-      <div class="row h-100">
+<div class="container">
+  <div class="row h-100">
 <div class="container"> 
   <div class="row justify-content-center">
     <div class="col-md-12">
     <div>
-            <div><h1>{{ __('Your Application Details') }}</h1></div>
+      <div><h1>{{ __('Your Application Details') }}</h1></div>
 
-        <div class="card-body">
-
-
+      <div class="card-body">
         <br>
       <form method="post" enctype="multipart/form-data" action="{{ route('admission.store') }}" >
         @method('POST')
