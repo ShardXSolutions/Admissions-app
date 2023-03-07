@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Route;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\KuccpsPlacedStudents;
+use App\Http\Controllers\SendMailController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +23,7 @@ Auth::routes();
 Route::resource('admission','AdmissionController');
 Route::group(['middleware' => ['web']], function () {
 Route::post('kuccpslounge', ['as'=>'kuccpslounge','uses'=>'AdmissionAuthController@login']);
-//Route::get('/home', 'HomeController@index' );
+
 Route::get('/admin',['as'=>'admin','uses'=>'HomeController@index']);
 Route::post('contacted','HomeController@updateContacted');
 Route::get('/search','HomeController@search');
@@ -36,3 +37,5 @@ Route::get('/new', function () {
  Route::post('/settings', 'HomeController@setsettings');
  Route::get('/import', 'HomeController@import');
  Route::post('/import', 'HomeController@importData');
+
+ Route::get('send-mail', [SendMailController::class, 'sendmail']);
