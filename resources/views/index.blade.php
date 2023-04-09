@@ -13,7 +13,7 @@
 
             <h1 class="mb-5">Welcome to our Online Admission Portal. </h1>
             <br><br><br><br><br><br><br>
-           <a href="#KUCCPS" class="btn bg-dark btn-outline btn-xl js-scroll-trigger">KUCCPS Placed Applicants </a>
+           <a href="#KUCCPS" class="btn bg-dark btn-outline btn-xl js-scroll-trigger">Pending and KUCCPS Applicants </a>
  <a href="#newApplication" class="btn bg-dark btn-outline btn-xl js-scroll-trigger">New Applicants </a> 
             
           </div>
@@ -95,7 +95,7 @@
         </div>   <div class="header-content mx-auto">
 
         <br><br>
-<h1 class="mb-5" style="color:#ffffff;">If you have not been placed by KUCCPS in our institution this Year, please scroll down to apply directly to the college. </h1>
+<h1 class="mb-5" style="color:#ffffff;">If you have not applied yet for a course or have been placed by KUCCPS this Year, please scroll down to apply.</h1>
 <br><a href="#newApplication" class="btn bg-dark btn-outline btn-xl js-scroll-trigger">New Applicantion </a>
 
 

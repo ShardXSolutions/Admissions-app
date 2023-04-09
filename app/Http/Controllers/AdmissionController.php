@@ -111,7 +111,8 @@ class AdmissionController extends Controller
         $contentUrl = Storage::disk('public')->path('/img/qr-code/'.$admission->Adm.'.png');
         $settings =Settings::take(1)->first();
         
-       return view('admission.pdf',['admission'=>$admission,'qrcodeurl'=>$contentUrl, 'dates'=>$settings])->with('message', 'Your application is successful');
+        return back()->with('message', 'Your Application has been received. Give us 2 working days to review and get back to you. You can check the progress of your application by Logging in to the portal using your index number and year.'); 
+       //return view('admission.pdf',['admission'=>$admission,'qrcodeurl'=>$contentUrl, 'dates'=>$settings])->with('message', 'Your application is successful');
         //
     }
 

@@ -38,7 +38,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#KUCCPS">KUCCPS Placed Students</a>
+            <a class="nav-link js-scroll-trigger" href="#KUCCPS">KUCCPS and Pending Applicants</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#newApplication">New Applicants</a>
